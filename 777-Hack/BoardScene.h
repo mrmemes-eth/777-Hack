@@ -1,0 +1,3 @@
+@interface BoardScene : SKScene
+
+@end
