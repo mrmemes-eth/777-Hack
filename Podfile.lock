@@ -1,0 +1,10 @@
+PODS:
+  - Funcussion (0.1.1)
+
+DEPENDENCIES:
+  - Funcussion
+
+SPEC CHECKSUMS:
+  Funcussion: f8383c7db59d37a4f6c75e787e6e41e1b0d2a792
+
+COCOAPODS: 0.27.1
