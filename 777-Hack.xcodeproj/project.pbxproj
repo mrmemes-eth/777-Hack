@@ -42,7 +42,7 @@
 		7C667BC618258E69006D2EA8 /* WelcomeScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeScene.h; sourceTree = "<group>"; };
 		7C667BC718258E69006D2EA8 /* WelcomeScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeScene.m; sourceTree = "<group>"; };
 		7C667BCC18258E79006D2EA8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		869CFEEEE00C4A1D844E4A6A /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		869CFEEEE00C4A1D844E4A6A /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = ../Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,12 +64,11 @@
 		7C667AE318243A46006D2EA8 = {
 			isa = PBXGroup;
 			children = (
-				7C667BCC18258E79006D2EA8 /* Images.xcassets */,
 				7C667BBF18258E69006D2EA8 /* App */,
-				7C667BBB18258CDB006D2EA8 /* Support */,
+				7C667BCE18258EE0006D2EA8 /* Assets */,
 				7C667AEE18243A46006D2EA8 /* Frameworks */,
 				7C667AED18243A46006D2EA8 /* Products */,
-				869CFEEEE00C4A1D844E4A6A /* Pods.xcconfig */,
+				7C667BBB18258CDB006D2EA8 /* Support */,
 			);
 			sourceTree = "<group>";
 		};
@@ -97,10 +96,11 @@
 		7C667BBB18258CDB006D2EA8 /* Support */ = {
 			isa = PBXGroup;
 			children = (
-				7C667BBC18258D64006D2EA8 /* InfoPlist.strings */,
 				7C667AF918243A46006D2EA8 /* 777-Hack-Info.plist */,
 				7C667AFF18243A46006D2EA8 /* 777-Hack-Prefix.pch */,
+				7C667BBC18258D64006D2EA8 /* InfoPlist.strings */,
 				7C667AFD18243A46006D2EA8 /* main.m */,
+				869CFEEEE00C4A1D844E4A6A /* Pods.xcconfig */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -118,6 +118,14 @@
 				7C667BC718258E69006D2EA8 /* WelcomeScene.m */,
 			);
 			path = App;
+			sourceTree = "<group>";
+		};
+		7C667BCE18258EE0006D2EA8 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				7C667BCC18258E79006D2EA8 /* Images.xcassets */,
+			);
+			path = Assets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
