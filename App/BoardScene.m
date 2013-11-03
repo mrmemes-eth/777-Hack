@@ -45,6 +45,7 @@ static CGPoint newPoint(CGPoint location, UISwipeGestureRecognizerDirection dire
 -(UISwipeGestureRecognizer*)leftRecognizer;
 -(UISwipeGestureRecognizer*)rightRecognizer;
 
+-(BOOL)sectorIsUnoccupied:(CGPoint)point;
 -(void)handleMovement:(UISwipeGestureRecognizer*)recognizer;
 
 @end
@@ -123,9 +124,15 @@ static CGPoint newPoint(CGPoint location, UISwipeGestureRecognizerDirection dire
   return CGRectMake(0, 0, gridLength, gridLength);
 }
 
+-(BOOL)sectorIsUnoccupied:(CGPoint)point {
+  return ![self.children any:^BOOL(SKNode *node) {
+    return CGPointEqualToPoint(point, node.position);
+  }];
+}
+
 -(void)handleMovement:(UISwipeGestureRecognizer *)recognizer {
   CGPoint newPosition = newPoint(self.hacker.position, recognizer.direction, gridSegmentLength);
-  if (CGRectContainsPoint(self.gridRect, newPosition)) {
+  if (CGRectContainsPoint(self.gridRect, newPosition) && [self sectorIsUnoccupied:newPosition]) {
     [self.hacker runAction:[SKAction moveTo:newPosition duration:0.25]];
   } else {
     CGFloat distance = (gridSegmentLength - self.hacker.size.width) / 2;
