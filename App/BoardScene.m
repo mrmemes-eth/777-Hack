@@ -1,8 +1,31 @@
 #import "BoardScene.h"
 #import "Hacker.h"
 
-static const CGFloat gridLength = 128.f;
-static const CGFloat gridCenter = gridLength / 2.f;
+static const NSUInteger gridSegments = 6;
+static const CGFloat gridSegmentLength = 128.f;
+static const CGFloat gridSegmentCenter = gridSegmentLength / 2.f;
+static const CGFloat gridLength = gridSegmentLength * gridSegments;
+
+static CGPoint newPoint(CGPoint location, UISwipeGestureRecognizerDirection direction, CGFloat distance) {
+  CGPoint newPoint;
+  switch (direction) {
+    case UISwipeGestureRecognizerDirectionLeft:
+      newPoint = CGPointMake(location.x - distance, location.y);
+      break;
+    case UISwipeGestureRecognizerDirectionRight:
+      newPoint = CGPointMake(location.x + distance, location.y);
+      break;
+    case UISwipeGestureRecognizerDirectionUp:
+      newPoint = CGPointMake(location.x, location.y + distance);
+      break;
+    case UISwipeGestureRecognizerDirectionDown:
+      newPoint = CGPointMake(location.x, location.y - distance);
+      break;
+    default:
+      break;
+   }
+  return newPoint;
+}
 
 @interface BoardScene() {
   SKSpriteNode *_boardNode;
@@ -89,28 +112,24 @@ static const CGFloat gridCenter = gridLength / 2.f;
   [view addGestureRecognizer:self.upRecognizer];
   [view addGestureRecognizer:self.downRecognizer];
   [self addChild:self.hacker];
-  [self.hacker setPosition:CGPointMake(gridCenter, gridCenter)];
+  [self.hacker setPosition:CGPointMake(gridSegmentCenter, gridSegmentCenter)];
+}
+
+-(CGRect)gridRect {
+  return CGRectMake(0, 0, gridLength, gridLength);
 }
 
 -(void)handleMovement:(UISwipeGestureRecognizer *)recognizer {
-  CGPoint newPosition;
-  switch (recognizer.direction) {
-    case UISwipeGestureRecognizerDirectionLeft:
-      newPosition = CGPointMake(self.hacker.position.x - gridLength, self.hacker.position.y);
-      break;
-    case UISwipeGestureRecognizerDirectionRight:
-      newPosition = CGPointMake(self.hacker.position.x + gridLength, self.hacker.position.y);
-      break;
-    case UISwipeGestureRecognizerDirectionUp:
-      newPosition = CGPointMake(self.hacker.position.x, self.hacker.position.y + gridLength);
-      break;
-    case UISwipeGestureRecognizerDirectionDown:
-      newPosition = CGPointMake(self.hacker.position.x, self.hacker.position.y - gridLength);
-      break;
-    default:
-      break;
+  CGPoint newPosition = newPoint(self.hacker.position, recognizer.direction, gridSegmentLength);
+  if (CGRectContainsPoint(self.gridRect, newPosition)) {
+    [self.hacker runAction:[SKAction moveTo:newPosition duration:0.25]];
+  } else {
+    CGFloat distance = (gridSegmentLength - self.hacker.size.width) / 2;
+    newPosition = newPoint(self.hacker.position, recognizer.direction, distance);
+    CGPoint oldPosition = self.hacker.position;
+    [self.hacker runAction:[SKAction sequence:@[[SKAction moveTo:newPosition duration:0.05],
+                                                [SKAction moveTo:oldPosition duration:0.05]]]];
   }
-  [self.hacker runAction:[SKAction moveTo:newPosition duration:0.25]];
 }
 
 @end
