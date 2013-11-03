@@ -18,6 +18,7 @@
 		7C667BCA18258E69006D2EA8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C667BC518258E69006D2EA8 /* ViewController.m */; };
 		7C667BCB18258E69006D2EA8 /* WelcomeScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C667BC718258E69006D2EA8 /* WelcomeScene.m */; };
 		7C667BCD18258E79006D2EA8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C667BCC18258E79006D2EA8 /* Images.xcassets */; };
+		7C667BD11826D1FE006D2EA8 /* Hacker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C667BD01826D1FE006D2EA8 /* Hacker.m */; };
 		E167A9751B3647CC857E1FE5 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F186E5361B244FFA0E7BD6C /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -42,6 +43,8 @@
 		7C667BC618258E69006D2EA8 /* WelcomeScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeScene.h; sourceTree = "<group>"; };
 		7C667BC718258E69006D2EA8 /* WelcomeScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeScene.m; sourceTree = "<group>"; };
 		7C667BCC18258E79006D2EA8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		7C667BCF1826D1FE006D2EA8 /* Hacker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Hacker.h; sourceTree = "<group>"; };
+		7C667BD01826D1FE006D2EA8 /* Hacker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Hacker.m; sourceTree = "<group>"; };
 		869CFEEEE00C4A1D844E4A6A /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = ../Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -116,6 +119,8 @@
 				7C667BC518258E69006D2EA8 /* ViewController.m */,
 				7C667BC618258E69006D2EA8 /* WelcomeScene.h */,
 				7C667BC718258E69006D2EA8 /* WelcomeScene.m */,
+				7C667BCF1826D1FE006D2EA8 /* Hacker.h */,
+				7C667BD01826D1FE006D2EA8 /* Hacker.m */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -228,6 +233,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7C667BC818258E69006D2EA8 /* AppDelegate.m in Sources */,
+				7C667BD11826D1FE006D2EA8 /* Hacker.m in Sources */,
 				7C667BCB18258E69006D2EA8 /* WelcomeScene.m in Sources */,
 				7C667AFE18243A46006D2EA8 /* main.m in Sources */,
 				7C667BCA18258E69006D2EA8 /* ViewController.m in Sources */,
