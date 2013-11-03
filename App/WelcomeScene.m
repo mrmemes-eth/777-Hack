@@ -1,6 +1,8 @@
 #import "WelcomeScene.h"
 #import "BoardScene.h"
 
+static const CGFloat kMargin = 20;
+
 @implementation WelcomeScene {
   SKLabelNode *_nameLabel;
   SKLabelNode *_startLabel;
@@ -21,8 +23,7 @@
     [_nameLabel setText:@"777-Hack"];
     [_nameLabel setFontSize:30];
     [_nameLabel setFontColor:[SKColor greenColor]];
-    [_nameLabel setPosition:CGPointMake(CGRectGetMidX(self.frame),
-                                       CGRectGetMidY(self.frame))];
+    [_nameLabel setPosition:CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame))];
   }
   return _nameLabel;
 }
@@ -33,7 +34,7 @@
     [_startLabel setText:@"START"];
     [_startLabel setFontSize:36];
     [_startLabel setFontColor:[SKColor greenColor]];
-    [_startLabel setPosition:CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame) - 100)];
+    [_startLabel setPosition:CGPointMake(self.nameLabel.position.x, self.nameLabel.position.y - _startLabel.frame.size.height - kMargin)];
     [_startLabel setName:@"start_label"];
   }
   return _startLabel;
@@ -51,7 +52,7 @@
   CGPoint location = [touch locationInNode:self];
   SKNode *node = [self nodeAtPoint:location];
   if ([node.name isEqualToString:@"start_label"]) {
-    SKScene *boardScene  = [[BoardScene alloc] initWithSize:CGSizeMake(1024,768)];
+    SKScene *boardScene  = [[BoardScene alloc] initWithSize:self.size];
     SKTransition *transition = [SKTransition fadeWithDuration:1];
     [self.view presentScene:boardScene transition:transition];
   }

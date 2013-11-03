@@ -20,20 +20,13 @@
     [_spriteView setShowsFPS:YES];
     [_spriteView setShowsDrawCount:YES];
     [_spriteView setShowsNodeCount:YES];
-    [_spriteView setBackgroundColor:[UIColor redColor]];
   }
   return _spriteView;
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-
-    // Create and configure the scene.
-    SKScene * scene = [WelcomeScene sceneWithSize:self.view.bounds.size];
-    scene.scaleMode = SKSceneScaleModeAspectFill;
-    
-    // Present the scene.
-    [self.spriteView presentScene:scene];
+-(void)viewWillLayoutSubviews {
+  [super viewWillLayoutSubviews];
+  [self.spriteView presentScene:[WelcomeScene sceneWithSize:self.view.bounds.size]];
 }
 
 -(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)orientation {
