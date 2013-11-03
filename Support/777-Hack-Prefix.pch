@@ -11,3 +11,6 @@
   #import <Funcussion/NSArray+Funcussion.h>
   #import <Funcussion/NSDictionary+Funcussion.h>
 #endif
+
+#define log_point(point) NSLog(@"x: %f, y: %f", point.x, point.y)
+#define log_object(obj)  NSLog(@"%@: %@", [obj class], obj)
