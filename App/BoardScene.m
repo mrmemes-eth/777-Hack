@@ -1,5 +1,6 @@
 #import "BoardScene.h"
 #import "Hacker.h"
+#import "DataNode.h"
 
 static const NSUInteger gridSegments = 6;
 static const CGFloat gridSegmentLength = 128.f;
@@ -113,6 +114,9 @@ static CGPoint newPoint(CGPoint location, UISwipeGestureRecognizerDirection dire
   [view addGestureRecognizer:self.downRecognizer];
   [self addChild:self.hacker];
   [self.hacker setPosition:CGPointMake(gridSegmentCenter, gridSegmentCenter)];
+  DataNode *node = [DataNode new];
+  [self addChild:node];
+  [node setPosition:CGPointMake(gridSegmentCenter * 3, gridSegmentCenter * 5)];
 }
 
 -(CGRect)gridRect {

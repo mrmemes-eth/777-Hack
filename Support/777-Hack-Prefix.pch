@@ -12,5 +12,9 @@
   #import <Funcussion/NSDictionary+Funcussion.h>
 #endif
 
+static inline CGSize nodeSize() {
+  return CGSizeMake(90,90);
+}
+
 #define log_point(point) NSLog(@"x: %f, y: %f", point.x, point.y)
 #define log_object(obj)  NSLog(@"%@: %@", [obj class], obj)

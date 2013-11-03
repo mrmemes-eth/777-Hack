@@ -1,0 +1,3 @@
+@interface DataNode : SKSpriteNode
+
+@end

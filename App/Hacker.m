@@ -5,7 +5,7 @@
 -(id)init {
   if(self = [super init]) {
     [self setColor:[SKColor yellowColor]];
-    [self setSize:CGSizeMake(90, 90)];
+    [self setSize:nodeSize()];
     [self setName:@"hacker"];
   }
   return self;
