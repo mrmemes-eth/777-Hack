@@ -93,22 +93,24 @@ static const CGFloat gridCenter = gridLength / 2.f;
 }
 
 -(void)handleMovement:(UISwipeGestureRecognizer *)recognizer {
+  CGPoint newPosition;
   switch (recognizer.direction) {
     case UISwipeGestureRecognizerDirectionLeft:
-      [self.hacker setPosition:CGPointMake(self.hacker.position.x - gridLength, self.hacker.position.y)];
+      newPosition = CGPointMake(self.hacker.position.x - gridLength, self.hacker.position.y);
       break;
     case UISwipeGestureRecognizerDirectionRight:
-      [self.hacker setPosition:CGPointMake(self.hacker.position.x + gridLength, self.hacker.position.y)];
+      newPosition = CGPointMake(self.hacker.position.x + gridLength, self.hacker.position.y);
       break;
     case UISwipeGestureRecognizerDirectionUp:
-      [self.hacker setPosition:CGPointMake(self.hacker.position.x, self.hacker.position.y + gridLength)];
+      newPosition = CGPointMake(self.hacker.position.x, self.hacker.position.y + gridLength);
       break;
     case UISwipeGestureRecognizerDirectionDown:
-      [self.hacker setPosition:CGPointMake(self.hacker.position.x, self.hacker.position.y - gridLength)];
+      newPosition = CGPointMake(self.hacker.position.x, self.hacker.position.y - gridLength);
       break;
     default:
       break;
   }
+  [self.hacker runAction:[SKAction moveTo:newPosition duration:0.25]];
 }
 
 @end
