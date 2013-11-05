@@ -1,11 +1,7 @@
 #import "BoardScene.h"
 #import "Hacker.h"
 #import "DataNode.h"
-
-static const NSUInteger gridSegments = 6;
-static const CGFloat gridSegmentLength = 128.f;
-static const CGFloat gridSegmentCenter = gridSegmentLength / 2.f;
-static const CGFloat gridLength = gridSegmentLength * gridSegments;
+#import "BoardGenerator.h"
 
 static CGPoint newPoint(CGPoint location, UISwipeGestureRecognizerDirection direction, CGFloat distance) {
   CGPoint newPoint;
@@ -115,9 +111,10 @@ static CGPoint newPoint(CGPoint location, UISwipeGestureRecognizerDirection dire
   [view addGestureRecognizer:self.downRecognizer];
   [self addChild:self.hacker];
   [self.hacker setPosition:CGPointMake(gridSegmentCenter, gridSegmentCenter)];
-  DataNode *node = [DataNode new];
-  [self addChild:node];
-  [node setPosition:CGPointMake(gridSegmentCenter * 3, gridSegmentCenter * 5)];
+  BoardGenerator *board = [BoardGenerator board];
+  [board.dataNodes each:^(DataNode *node) {
+    [self addChild:node];
+  }];
 }
 
 -(CGRect)gridRect {

@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7C4C36C41828A59900FB680A /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C667B1818243A46006D2EA8 /* XCTest.framework */; };
+		7C4C36C51828A59900FB680A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C667AEF18243A46006D2EA8 /* Foundation.framework */; };
+		7C4C36C61828A59900FB680A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C667AF318243A46006D2EA8 /* UIKit.framework */; };
+		7C4C36CC1828A59900FB680A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7C4C36CA1828A59900FB680A /* InfoPlist.strings */; };
+		7C4C36D61828A63B00FB680A /* BoardGeneratorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C4C36D51828A63B00FB680A /* BoardGeneratorTest.m */; };
 		7C667AF018243A46006D2EA8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C667AEF18243A46006D2EA8 /* Foundation.framework */; };
 		7C667AF218243A46006D2EA8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C667AF118243A46006D2EA8 /* CoreGraphics.framework */; };
 		7C667AF418243A46006D2EA8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C667AF318243A46006D2EA8 /* UIKit.framework */; };
@@ -20,11 +25,27 @@
 		7C667BCD18258E79006D2EA8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C667BCC18258E79006D2EA8 /* Images.xcassets */; };
 		7C667BD11826D1FE006D2EA8 /* Hacker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C667BD01826D1FE006D2EA8 /* Hacker.m */; };
 		7C667BD41826EECB006D2EA8 /* DataNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C667BD31826EECB006D2EA8 /* DataNode.m */; };
+		7C667BD71826FB5B006D2EA8 /* BoardGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C667BD61826FB5B006D2EA8 /* BoardGenerator.m */; };
 		E167A9751B3647CC857E1FE5 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F186E5361B244FFA0E7BD6C /* libPods.a */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		7C4C36D01828A59900FB680A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7C667AE418243A46006D2EA8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7C667AEB18243A46006D2EA8;
+			remoteInfo = "777-Hack";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		5F186E5361B244FFA0E7BD6C /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		7C4C36C31828A59900FB680A /* Units.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Units.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7C4C36C91828A59900FB680A /* Units-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Units-Info.plist"; sourceTree = "<group>"; };
+		7C4C36CB1828A59900FB680A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		7C4C36CF1828A59900FB680A /* Units-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Units-Prefix.pch"; sourceTree = "<group>"; };
+		7C4C36D51828A63B00FB680A /* BoardGeneratorTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardGeneratorTest.m; sourceTree = "<group>"; };
 		7C667AEC18243A46006D2EA8 /* 777-Hack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "777-Hack.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C667AEF18243A46006D2EA8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7C667AF118243A46006D2EA8 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -48,10 +69,22 @@
 		7C667BD01826D1FE006D2EA8 /* Hacker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Hacker.m; sourceTree = "<group>"; };
 		7C667BD21826EECB006D2EA8 /* DataNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataNode.h; sourceTree = "<group>"; };
 		7C667BD31826EECB006D2EA8 /* DataNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataNode.m; sourceTree = "<group>"; };
+		7C667BD51826FB5B006D2EA8 /* BoardGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardGenerator.h; sourceTree = "<group>"; };
+		7C667BD61826FB5B006D2EA8 /* BoardGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardGenerator.m; sourceTree = "<group>"; };
 		869CFEEEE00C4A1D844E4A6A /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = ../Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		7C4C36C01828A59900FB680A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7C4C36C41828A59900FB680A /* XCTest.framework in Frameworks */,
+				7C4C36C61828A59900FB680A /* UIKit.framework in Frameworks */,
+				7C4C36C51828A59900FB680A /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7C667AE918243A46006D2EA8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -67,11 +100,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7C4C36C71828A59900FB680A /* Units */ = {
+			isa = PBXGroup;
+			children = (
+				7C4C36C81828A59900FB680A /* Supporting Files */,
+				7C4C36D51828A63B00FB680A /* BoardGeneratorTest.m */,
+			);
+			path = Units;
+			sourceTree = "<group>";
+		};
+		7C4C36C81828A59900FB680A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				7C4C36C91828A59900FB680A /* Units-Info.plist */,
+				7C4C36CA1828A59900FB680A /* InfoPlist.strings */,
+				7C4C36CF1828A59900FB680A /* Units-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		7C667AE318243A46006D2EA8 = {
 			isa = PBXGroup;
 			children = (
 				7C667BBF18258E69006D2EA8 /* App */,
 				7C667BCE18258EE0006D2EA8 /* Assets */,
+				7C4C36C71828A59900FB680A /* Units */,
 				7C667AEE18243A46006D2EA8 /* Frameworks */,
 				7C667AED18243A46006D2EA8 /* Products */,
 				7C667BBB18258CDB006D2EA8 /* Support */,
@@ -82,6 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				7C667AEC18243A46006D2EA8 /* 777-Hack.app */,
+				7C4C36C31828A59900FB680A /* Units.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -126,6 +180,8 @@
 				7C667BD01826D1FE006D2EA8 /* Hacker.m */,
 				7C667BD21826EECB006D2EA8 /* DataNode.h */,
 				7C667BD31826EECB006D2EA8 /* DataNode.m */,
+				7C667BD51826FB5B006D2EA8 /* BoardGenerator.h */,
+				7C667BD61826FB5B006D2EA8 /* BoardGenerator.m */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -141,6 +197,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		7C4C36C21828A59900FB680A /* Units */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7C4C36D41828A59900FB680A /* Build configuration list for PBXNativeTarget "Units" */;
+			buildPhases = (
+				7C4C36BF1828A59900FB680A /* Sources */,
+				7C4C36C01828A59900FB680A /* Frameworks */,
+				7C4C36C11828A59900FB680A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7C4C36D11828A59900FB680A /* PBXTargetDependency */,
+			);
+			name = Units;
+			productName = Units;
+			productReference = 7C4C36C31828A59900FB680A /* Units.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		7C667AEB18243A46006D2EA8 /* 777-Hack */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7C667B2818243A46006D2EA8 /* Build configuration list for PBXNativeTarget "777-Hack" */;
@@ -168,6 +242,11 @@
 			attributes = {
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = Hashrocket;
+				TargetAttributes = {
+					7C4C36C21828A59900FB680A = {
+						TestTargetID = 7C667AEB18243A46006D2EA8;
+					};
+				};
 			};
 			buildConfigurationList = 7C667AE718243A46006D2EA8 /* Build configuration list for PBXProject "777-Hack" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -183,11 +262,20 @@
 			projectRoot = "";
 			targets = (
 				7C667AEB18243A46006D2EA8 /* 777-Hack */,
+				7C4C36C21828A59900FB680A /* Units */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		7C4C36C11828A59900FB680A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7C4C36CC1828A59900FB680A /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7C667AEA18243A46006D2EA8 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -233,12 +321,21 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		7C4C36BF1828A59900FB680A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7C4C36D61828A63B00FB680A /* BoardGeneratorTest.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7C667AE818243A46006D2EA8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				7C667BD41826EECB006D2EA8 /* DataNode.m in Sources */,
 				7C667BC818258E69006D2EA8 /* AppDelegate.m in Sources */,
+				7C667BD71826FB5B006D2EA8 /* BoardGenerator.m in Sources */,
 				7C667BD11826D1FE006D2EA8 /* Hacker.m in Sources */,
 				7C667BCB18258E69006D2EA8 /* WelcomeScene.m in Sources */,
 				7C667AFE18243A46006D2EA8 /* main.m in Sources */,
@@ -249,7 +346,23 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		7C4C36D11828A59900FB680A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7C667AEB18243A46006D2EA8 /* 777-Hack */;
+			targetProxy = 7C4C36D01828A59900FB680A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
+		7C4C36CA1828A59900FB680A /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7C4C36CB1828A59900FB680A /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		7C667BBC18258D64006D2EA8 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -261,6 +374,48 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		7C4C36D21828A59900FB680A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/777-Hack.app/777-Hack";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Units/Units-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "Units/Units-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		7C4C36D31828A59900FB680A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/777-Hack.app/777-Hack";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Units/Units-Prefix.pch";
+				INFOPLIST_FILE = "Units/Units-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
 		7C667B2618243A46006D2EA8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -368,6 +523,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		7C4C36D41828A59900FB680A /* Build configuration list for PBXNativeTarget "Units" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7C4C36D21828A59900FB680A /* Debug */,
+				7C4C36D31828A59900FB680A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		7C667AE718243A46006D2EA8 /* Build configuration list for PBXProject "777-Hack" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
