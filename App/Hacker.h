@@ -1,3 +1,4 @@
-@interface Hacker : SKSpriteNode
+#import "SpriteSectorNode.h"
+@interface Hacker : SpriteSectorNode
 
 @end

@@ -1,4 +1,4 @@
-@interface DataNode : SKSpriteNode
-+(id)nodeWithSector:(Sector)sector;
--(Sector)sector;
+#import "SpriteSectorNode.h"
+
+@interface DataNode : SpriteSectorNode
 @end

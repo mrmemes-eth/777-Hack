@@ -1,6 +1,6 @@
 #import "BoardScene.h"
 #import "Hacker.h"
-#import "DataNode.h"
+#import "SpriteSectorNode.h"
 #import "BoardGenerator.h"
 
 static CGPoint newPoint(CGPoint location, UISwipeGestureRecognizerDirection direction, CGFloat distance) {

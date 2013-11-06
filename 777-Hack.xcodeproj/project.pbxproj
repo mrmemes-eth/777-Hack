@@ -12,6 +12,7 @@
 		7C4C36C61828A59900FB680A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C667AF318243A46006D2EA8 /* UIKit.framework */; };
 		7C4C36CC1828A59900FB680A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7C4C36CA1828A59900FB680A /* InfoPlist.strings */; };
 		7C4C36D61828A63B00FB680A /* BoardGeneratorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C4C36D51828A63B00FB680A /* BoardGeneratorTest.m */; };
+		7C50CB791829E3730058F2B6 /* SpriteSectorNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C50CB781829E3730058F2B6 /* SpriteSectorNode.m */; };
 		7C667AF018243A46006D2EA8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C667AEF18243A46006D2EA8 /* Foundation.framework */; };
 		7C667AF218243A46006D2EA8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C667AF118243A46006D2EA8 /* CoreGraphics.framework */; };
 		7C667AF418243A46006D2EA8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C667AF318243A46006D2EA8 /* UIKit.framework */; };
@@ -46,6 +47,8 @@
 		7C4C36CB1828A59900FB680A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7C4C36CF1828A59900FB680A /* Units-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Units-Prefix.pch"; sourceTree = "<group>"; };
 		7C4C36D51828A63B00FB680A /* BoardGeneratorTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardGeneratorTest.m; sourceTree = "<group>"; };
+		7C50CB771829E3730058F2B6 /* SpriteSectorNode.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; path = SpriteSectorNode.h; sourceTree = "<group>"; tabWidth = 2; usesTabs = 0; wrapsLines = 1; };
+		7C50CB781829E3730058F2B6 /* SpriteSectorNode.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.objc; path = SpriteSectorNode.m; sourceTree = "<group>"; tabWidth = 2; usesTabs = 0; wrapsLines = 1; };
 		7C667AEC18243A46006D2EA8 /* 777-Hack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "777-Hack.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C667AEF18243A46006D2EA8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7C667AF118243A46006D2EA8 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -178,6 +181,8 @@
 				7C667BC718258E69006D2EA8 /* WelcomeScene.m */,
 				7C667BCF1826D1FE006D2EA8 /* Hacker.h */,
 				7C667BD01826D1FE006D2EA8 /* Hacker.m */,
+				7C50CB771829E3730058F2B6 /* SpriteSectorNode.h */,
+				7C50CB781829E3730058F2B6 /* SpriteSectorNode.m */,
 				7C667BD21826EECB006D2EA8 /* DataNode.h */,
 				7C667BD31826EECB006D2EA8 /* DataNode.m */,
 				7C667BD51826FB5B006D2EA8 /* BoardGenerator.h */,
@@ -341,6 +346,7 @@
 				7C667AFE18243A46006D2EA8 /* main.m in Sources */,
 				7C667BCA18258E69006D2EA8 /* ViewController.m in Sources */,
 				7C667BC918258E69006D2EA8 /* BoardScene.m in Sources */,
+				7C50CB791829E3730058F2B6 /* SpriteSectorNode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
