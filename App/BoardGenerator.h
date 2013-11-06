@@ -1,11 +1,15 @@
 @interface BoardGenerator : NSObject
 
-+(id)board;
++(id)boardWithPlayerAtSector:(Sector)sector;
 
--(NSMutableArray*)dataNodes;
+-(NSMutableArray*)nodes;
 
--(void)addNodeAtSector:(Sector)sector;
+-(void)addPlayerAtSector:(Sector)sector;
+-(void)addDataNodeAtSector:(Sector)sector;
+
 -(BOOL)sectorIsOccupied:(Sector)sector;
+-(BOOL)sectorIsUnoccupied:(Sector)sector;
+
 -(void)populateNodes;
 
 @end

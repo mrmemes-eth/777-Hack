@@ -21,15 +21,15 @@
   Sector sector = SectorMake(1,1);
   BoardGenerator *board = [BoardGenerator new];
   XCTAssertFalse([board sectorIsOccupied:sector], @"");
-  [board addNodeAtSector:sector];
+  [board addDataNodeAtSector:sector];
   XCTAssertTrue([board sectorIsOccupied:sector], @"");
 }
 
 -(void)testNodesGenerated {
   BoardGenerator *board = [BoardGenerator new];
   [board populateNodes];
-  XCTAssertTrue([board.dataNodes count] >= 6, @"");
-  XCTAssertFalse([board.dataNodes count] > 16, @"");
+  XCTAssertTrue([board.nodes count] >= 6, @"");
+  XCTAssertFalse([board.nodes count] > 16, @"");
 }
 
 @end

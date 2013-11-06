@@ -66,10 +66,7 @@ static CGPoint newPoint(CGPoint location, UISwipeGestureRecognizerDirection dire
 }
 
 -(Hacker*)hacker {
-  if (!_hacker) {
-    _hacker = [Hacker new];
-  }
-  return _hacker;
+  return (Hacker*)[self childNodeWithName:@"hacker"];
 }
 
 -(UISwipeGestureRecognizer*)rightRecognizer {
@@ -109,10 +106,8 @@ static CGPoint newPoint(CGPoint location, UISwipeGestureRecognizerDirection dire
   [view addGestureRecognizer:self.leftRecognizer];
   [view addGestureRecognizer:self.upRecognizer];
   [view addGestureRecognizer:self.downRecognizer];
-  [self addChild:self.hacker];
-  [self.hacker setPosition:CGPointMake(gridSegmentCenter, gridSegmentCenter)];
-  BoardGenerator *board = [BoardGenerator board];
-  [board.dataNodes each:^(DataNode *node) {
+  BoardGenerator *board = [BoardGenerator boardWithPlayerAtSector:SectorZero];
+  [board.nodes each:^(SpriteSectorNode *node) {
     [self addChild:node];
   }];
 }

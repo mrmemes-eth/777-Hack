@@ -1,20 +1,37 @@
 #import "BoardGenerator.h"
 #import "DataNode.h"
+#import "Hacker.h"
+#import "WarpNode.h"
 
-static const NSUInteger minNodes = 6;
-static const NSUInteger maxNodes = 16;
+static const NSUInteger minNodes = 4;
+static const NSUInteger maxNodes = 10;
+
+static inline NSArray* shuffleArray(NSArray *array) {
+  NSMutableArray *mutableArray = [NSMutableArray arrayWithArray:array];
+   for (NSInteger i = mutableArray.count-1; i > 0; i--) {
+    [mutableArray exchangeObjectAtIndex:i
+                      withObjectAtIndex:arc4random_uniform(i+1)];
+   }
+  return mutableArray;
+}
 
 @interface BoardGenerator() {
-  NSMutableArray *_dataNodes;
+  NSMutableArray *_nodes;
 }
 -(NSUInteger)nodeCount;
 -(Sector)randomUnoccupiedSector;
+-(Sector)randomUnoccupiedCornerSector;
+-(NSArray*)shuffledCorners;
+-(NSArray*)randomUnoccupiedCornerPair;
+-(void)addWarp;
 @end
 
 @implementation BoardGenerator
 
-+(id)board {
++(id)boardWithPlayerAtSector:(Sector)sector {
   id board = [[[self class] alloc] init];
+  [board addPlayerAtSector:sector];
+  [board addWarp];
   [board populateNodes];
   return board;
 }
@@ -23,22 +40,43 @@ static const NSUInteger maxNodes = 16;
   return randomBetween(minNodes, maxNodes);
 }
 
--(NSMutableArray*)dataNodes {
-  if (!_dataNodes) {
-    _dataNodes = [NSMutableArray array];
+-(NSMutableArray*)nodes {
+  if (!_nodes) {
+    _nodes = [NSMutableArray array];
   }
-  return _dataNodes;
+  return _nodes;
 }
 
--(void)addNodeAtSector:(Sector)sector {
-  DataNode *node = [DataNode nodeWithSector:sector];
-  [self.dataNodes addObject:node];
+-(void)addPlayerAtSector:(Sector)sector {
+  [self.nodes addObject:[Hacker nodeWithSector:sector]];
+}
+
+-(void)addWarp {
+  [self.nodes addObject:[WarpNode nodeWithSector:self.randomUnoccupiedCornerSector]];
 }
 
 -(BOOL)sectorIsOccupied:(Sector)sector {
-  return [self.dataNodes any:^BOOL(DataNode *node) {
+  return [self.nodes any:^BOOL(SpriteSectorNode *node) {
     return SectorEqualToSector(sector, node.sector);
   }];
+}
+
+-(BOOL)sectorIsUnoccupied:(Sector)sector {
+  return ![self sectorIsOccupied:sector];
+}
+
+-(NSArray*)shuffledCorners {
+  return shuffleArray(@[@[@(0),@(0)],@[@(0),@(5)],@[@(5),@(5)],@[@(5),@(0)]]);
+}
+
+-(NSArray*)randomUnoccupiedCornerPair {
+   return [self.shuffledCorners detect:^BOOL(NSArray *pair) {
+     return [self sectorIsUnoccupied:SectorMakeFromArray(pair)];
+   }];
+}
+
+-(Sector)randomUnoccupiedCornerSector {
+  return SectorMakeFromArray(self.randomUnoccupiedCornerPair);
 }
 
 -(Sector)randomUnoccupiedSector {
@@ -50,12 +88,17 @@ static const NSUInteger maxNodes = 16;
   return sector;
 }
 
+-(void)addDataNodeAtSector:(Sector)sector {
+  DataNode *node = [DataNode nodeWithSector:sector];
+  [self.nodes addObject:node];
+}
+
 -(void)populateNodes {
   NSUInteger nodeCount = self.nodeCount;
   for (NSUInteger i = 0; i <= nodeCount; i++) {
     Sector sector = [self randomUnoccupiedSector];
     DataNode *node = [DataNode nodeWithSector:sector];
-    [self.dataNodes addObject:node];
+    [self.nodes addObject:node];
   }
 }
 
