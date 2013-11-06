@@ -34,8 +34,13 @@ static inline NSUInteger coordinateToSector(NSUInteger coordinate) {
   return coordinate / gridSectorLength;
 }
 
+static inline CGPoint sectorToPoint(Sector sector) {
+  return CGPointMake(sectorToCoordinate(sector.col),sectorToCoordinate(sector.row));
+}
+
 static inline BOOL SectorEqualToSector(Sector sector1, Sector sector2) {
   return sector1.col == sector2.col && sector1.row == sector2.row;
 }
 
 #define SectorZero SectorMake(0,0)
+#define log_sector(sec)  NSLog(@"row: %d, col: %d", sec.row, sec.col);

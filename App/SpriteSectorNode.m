@@ -7,7 +7,6 @@
 @implementation SpriteSectorNode
 
 +(id)nodeWithSector:(Sector)sector {
-  CGPointEqualToPoint(CGPointZero, CGPointZero);
   return [[[self class] alloc] initWithSector:sector];
 }
 
@@ -20,8 +19,8 @@
 }
 
 -(Sector)sector {
-  return SectorMake(coordinateToSector(self.position.x),
-                    coordinateToSector(self.position.y));
+  return SectorMake(coordinateToSector(self.position.y),
+                    coordinateToSector(self.position.x));
 }
 
 @end

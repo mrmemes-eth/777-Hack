@@ -7,6 +7,9 @@
 #ifdef __OBJC__
   #import <UIKit/UIKit.h>
   #import <Foundation/Foundation.h>
+  #import <SpriteKit/SpriteKit.h>
+  #import <Funcussion/NSArray+Funcussion.h>
+  #import <Funcussion/NSDictionary+Funcussion.h>
 #endif
 
 #import "SectorFunctions.h"

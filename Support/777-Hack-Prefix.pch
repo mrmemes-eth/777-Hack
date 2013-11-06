@@ -25,4 +25,3 @@ static const uint32_t projectileCategory = 0x1 << 3;
 
 #define log_point(point) NSLog(@"x: %f, y: %f", point.x, point.y)
 #define log_object(obj)  NSLog(@"%@: %@", [obj class], obj)
-#define log_sector(sec)  NSLog(@"row: %d, col: %d", sec.row, sec.col);

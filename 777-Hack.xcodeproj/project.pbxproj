@@ -390,6 +390,7 @@
 /* Begin XCBuildConfiguration section */
 		7C4C36D21828A59900FB680A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 869CFEEEE00C4A1D844E4A6A /* Pods.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/777-Hack.app/777-Hack";
@@ -413,6 +414,7 @@
 		};
 		7C4C36D31828A59900FB680A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 869CFEEEE00C4A1D844E4A6A /* Pods.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/777-Hack.app/777-Hack";

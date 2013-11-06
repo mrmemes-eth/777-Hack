@@ -3,25 +3,23 @@
 #import "SpriteSectorNode.h"
 #import "BoardGenerator.h"
 
-static CGPoint newPoint(CGPoint location, UISwipeGestureRecognizerDirection direction, CGFloat distance) {
-  CGPoint newPoint;
+static CGPoint bumpPoint(CGPoint location, UISwipeGestureRecognizerDirection direction) {
+  CGFloat distance = ((gridSectorLength - nodeSize().width) / 2) - 5;
   switch (direction) {
     case UISwipeGestureRecognizerDirectionLeft:
-      newPoint = CGPointMake(location.x - distance, location.y);
+      location.x -= distance;
       break;
     case UISwipeGestureRecognizerDirectionRight:
-      newPoint = CGPointMake(location.x + distance, location.y);
+      location.x += distance;
       break;
     case UISwipeGestureRecognizerDirectionUp:
-      newPoint = CGPointMake(location.x, location.y + distance);
+      location.y += distance;
       break;
     case UISwipeGestureRecognizerDirectionDown:
-      newPoint = CGPointMake(location.x, location.y - distance);
-      break;
-    default:
+      location.y -= distance;
       break;
    }
-  return newPoint;
+  return location;
 }
 
 @interface BoardScene() {
@@ -31,6 +29,7 @@ static CGPoint newPoint(CGPoint location, UISwipeGestureRecognizerDirection dire
   UISwipeGestureRecognizer *_downRecognizer;
   UISwipeGestureRecognizer *_leftRecognizer;
   UISwipeGestureRecognizer *_rightRecognizer;
+  BoardGenerator *_board;
 }
 
 -(SKSpriteNode*)boardNode;
@@ -41,7 +40,6 @@ static CGPoint newPoint(CGPoint location, UISwipeGestureRecognizerDirection dire
 -(UISwipeGestureRecognizer*)leftRecognizer;
 -(UISwipeGestureRecognizer*)rightRecognizer;
 
--(BOOL)sectorIsUnoccupied:(CGPoint)point;
 -(void)handleMovement:(UISwipeGestureRecognizer*)recognizer;
 
 @end
@@ -54,6 +52,13 @@ static CGPoint newPoint(CGPoint location, UISwipeGestureRecognizerDirection dire
     [self addChild:self.boardNode];
   }
   return self;
+}
+
+-(BoardGenerator*)board {
+  if (!_board) {
+    _board = [BoardGenerator boardWithPlayerAtSector:SectorZero];
+  }
+  return _board;
 }
 
 -(SKSpriteNode*)boardNode {
@@ -106,8 +111,7 @@ static CGPoint newPoint(CGPoint location, UISwipeGestureRecognizerDirection dire
   [view addGestureRecognizer:self.leftRecognizer];
   [view addGestureRecognizer:self.upRecognizer];
   [view addGestureRecognizer:self.downRecognizer];
-  BoardGenerator *board = [BoardGenerator boardWithPlayerAtSector:SectorZero];
-  [board.nodes each:^(SpriteSectorNode *node) {
+  [self.board.nodes each:^(SpriteSectorNode *node) {
     [self addChild:node];
   }];
 }
@@ -116,22 +120,14 @@ static CGPoint newPoint(CGPoint location, UISwipeGestureRecognizerDirection dire
   return CGRectMake(0, 0, gridLength, gridLength);
 }
 
--(BOOL)sectorIsUnoccupied:(CGPoint)point {
-  return ![self.children any:^BOOL(SKNode *node) {
-    return CGPointEqualToPoint(point, node.position);
-  }];
-}
-
 -(void)handleMovement:(UISwipeGestureRecognizer *)recognizer {
-  CGPoint newPosition = newPoint(self.hacker.position, recognizer.direction, gridSectorLength);
-  if (CGRectContainsPoint(self.gridRect, newPosition) && [self sectorIsUnoccupied:newPosition]) {
-    [self.hacker runAction:[SKAction moveTo:newPosition duration:0.25]];
+  Sector newSector = [self.board newSectorForNode:self.hacker inDirection:recognizer.direction];
+  if (SectorEqualToSector(self.hacker.sector, newSector)) {
+    CGPoint point = bumpPoint(self.hacker.position, recognizer.direction);
+    [self.hacker runAction:[SKAction sequence:@[[SKAction moveTo:point duration:0.05],
+                                                [SKAction moveTo:self.hacker.position duration:0.05]]]];
   } else {
-    CGFloat distance = (gridSectorLength - self.hacker.size.width) / 2;
-    newPosition = newPoint(self.hacker.position, recognizer.direction, distance);
-    CGPoint oldPosition = self.hacker.position;
-    [self.hacker runAction:[SKAction sequence:@[[SKAction moveTo:newPosition duration:0.05],
-                                                [SKAction moveTo:oldPosition duration:0.05]]]];
+    [self.hacker runAction:[SKAction moveTo:sectorToPoint(newSector) duration:0.25]];
   }
 }
 

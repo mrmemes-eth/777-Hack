@@ -1,3 +1,5 @@
+#import "SpriteSectorNode.h"
+
 @interface BoardGenerator : NSObject
 
 +(id)boardWithPlayerAtSector:(Sector)sector;
@@ -9,6 +11,10 @@
 
 -(BOOL)sectorIsOccupied:(Sector)sector;
 -(BOOL)sectorIsUnoccupied:(Sector)sector;
+-(BOOL)sectorIsInBounds:(Sector)sector;
+
+-(Sector)newSectorForNode:(SpriteSectorNode*)node
+              inDirection:(UISwipeGestureRecognizerDirection)direction;
 
 -(void)populateNodes;
 
