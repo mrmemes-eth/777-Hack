@@ -123,11 +123,11 @@ static CGPoint newPoint(CGPoint location, UISwipeGestureRecognizerDirection dire
 }
 
 -(void)handleMovement:(UISwipeGestureRecognizer *)recognizer {
-  CGPoint newPosition = newPoint(self.hacker.position, recognizer.direction, gridSegmentLength);
+  CGPoint newPosition = newPoint(self.hacker.position, recognizer.direction, gridSectorLength);
   if (CGRectContainsPoint(self.gridRect, newPosition) && [self sectorIsUnoccupied:newPosition]) {
     [self.hacker runAction:[SKAction moveTo:newPosition duration:0.25]];
   } else {
-    CGFloat distance = (gridSegmentLength - self.hacker.size.width) / 2;
+    CGFloat distance = (gridSectorLength - self.hacker.size.width) / 2;
     newPosition = newPoint(self.hacker.position, recognizer.direction, distance);
     CGPoint oldPosition = self.hacker.position;
     [self.hacker runAction:[SKAction sequence:@[[SKAction moveTo:newPosition duration:0.05],

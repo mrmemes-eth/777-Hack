@@ -1,7 +1,7 @@
-static const NSUInteger gridSegments = 6;
-static const CGFloat gridSegmentLength = 128.f;
-static const CGFloat gridSegmentCenter = gridSegmentLength / 2.f;
-static const CGFloat gridLength = gridSegmentLength * gridSegments;
+static const NSUInteger gridSectors = 6;
+static const CGFloat gridSectorLength = 128.f;
+static const CGFloat gridSectorCenter = gridSectorLength / 2.f;
+static const CGFloat gridLength = gridSectorLength * gridSectors;
 
 
 static inline CGSize nodeSize() {
@@ -27,11 +27,11 @@ static inline Sector SectorMakeFromArray(NSArray *array) {
 }
 
 static inline NSUInteger sectorToCoordinate(NSUInteger sectorSegment) {
-  return sectorSegment * gridSegmentLength + gridSegmentCenter;
+  return sectorSegment * gridSectorLength + gridSectorCenter;
 }
 
 static inline NSUInteger coordinateToSector(NSUInteger coordinate) {
-  return coordinate / gridSegmentLength;
+  return coordinate / gridSectorLength;
 }
 
 static inline BOOL SectorEqualToSector(Sector sector1, Sector sector2) {

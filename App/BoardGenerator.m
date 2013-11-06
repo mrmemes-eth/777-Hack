@@ -82,8 +82,8 @@ static inline NSArray* shuffleArray(NSArray *array) {
 -(Sector)randomUnoccupiedSector {
   Sector sector;
   do {
-    sector = SectorMake(randomBetween(0, gridSegments),
-                        randomBetween(0, gridSegments));
+    sector = SectorMake(randomBetween(0, gridSectors),
+                        randomBetween(0, gridSectors));
   } while ([self sectorIsOccupied:sector]);
   return sector;
 }
