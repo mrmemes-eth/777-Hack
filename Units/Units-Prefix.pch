@@ -9,12 +9,4 @@
   #import <Foundation/Foundation.h>
 #endif
 
-typedef struct {
-  NSUInteger row;
-  NSUInteger col;
-} Sector;
-
-static Sector SectorMake(NSUInteger row, NSUInteger col) {
-  Sector sector = {row, col};
-  return sector;
-}
+#import "SectorFunctions.h"

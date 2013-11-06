@@ -77,6 +77,7 @@
 		7C667BD31826EECB006D2EA8 /* DataNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataNode.m; sourceTree = "<group>"; };
 		7C667BD51826FB5B006D2EA8 /* BoardGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardGenerator.h; sourceTree = "<group>"; };
 		7C667BD61826FB5B006D2EA8 /* BoardGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardGenerator.m; sourceTree = "<group>"; };
+		7C9D89A21829FEC4000BF6D9 /* SectorFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectorFunctions.h; sourceTree = "<group>"; };
 		869CFEEEE00C4A1D844E4A6A /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = ../Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -192,6 +193,7 @@
 				7C667BD61826FB5B006D2EA8 /* BoardGenerator.m */,
 				7C50CB7C1829E84D0058F2B6 /* WarpNode.h */,
 				7C50CB7D1829E84D0058F2B6 /* WarpNode.m */,
+				7C9D89A21829FEC4000BF6D9 /* SectorFunctions.h */,
 			);
 			path = App;
 			sourceTree = "<group>";
