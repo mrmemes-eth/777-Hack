@@ -12,15 +12,13 @@
 
 -(id)initWithSector:(Sector)sector {
   if (self = [self init]) {
-    [self setPosition:CGPointMake(sectorToCoordinate(sector.col),
-                                  sectorToCoordinate(sector.row))];
+    [self setPosition:CGPointFromSector(sector)];
   }
   return self;
 }
 
 -(Sector)sector {
-  return SectorMake(coordinateToSector(self.position.y),
-                    coordinateToSector(self.position.x));
+  return SectorFromCGPoint(self.position);
 }
 
 @end

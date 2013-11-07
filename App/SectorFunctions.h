@@ -26,16 +26,20 @@ static inline Sector SectorMakeFromArray(NSArray *array) {
                     [[array lastObject] integerValue]);
 }
 
-static inline NSUInteger sectorToCoordinate(NSUInteger sectorSegment) {
+static inline NSInteger sectorToCoordinate(NSUInteger sectorSegment) {
   return sectorSegment * gridSectorLength + gridSectorCenter;
 }
 
-static inline NSUInteger coordinateToSector(NSUInteger coordinate) {
+static inline NSInteger coordinateToSector(NSUInteger coordinate) {
   return coordinate / gridSectorLength;
 }
 
-static inline CGPoint sectorToPoint(Sector sector) {
+static inline CGPoint CGPointFromSector(Sector sector) {
   return CGPointMake(sectorToCoordinate(sector.col),sectorToCoordinate(sector.row));
+}
+
+static inline Sector SectorFromCGPoint(CGPoint point) {
+  return SectorMake(coordinateToSector(point.y), coordinateToSector(point.x));
 }
 
 static inline BOOL SectorEqualToSector(Sector sector1, Sector sector2) {

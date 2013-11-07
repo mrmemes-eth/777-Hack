@@ -127,7 +127,7 @@ static CGPoint bumpPoint(CGPoint location, UISwipeGestureRecognizerDirection dir
     [self.hacker runAction:[SKAction sequence:@[[SKAction moveTo:point duration:0.05],
                                                 [SKAction moveTo:self.hacker.position duration:0.05]]]];
   } else {
-    [self.hacker runAction:[SKAction moveTo:sectorToPoint(newSector) duration:0.25]];
+    [self.hacker runAction:[SKAction moveTo:CGPointFromSector(newSector) duration:0.25]];
   }
 }
 
