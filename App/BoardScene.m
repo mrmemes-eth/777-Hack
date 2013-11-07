@@ -34,6 +34,8 @@ static CGPoint bumpPoint(CGPoint location, UISwipeGestureRecognizerDirection dir
 
 -(SKSpriteNode*)boardNode;
 -(Hacker*)hacker;
+-(Board*)board;
+-(void)setBoard:(Board*)board;
 
 -(UISwipeGestureRecognizer*)upRecognizer;
 -(UISwipeGestureRecognizer*)downRecognizer;
@@ -55,16 +57,26 @@ static CGPoint bumpPoint(CGPoint location, UISwipeGestureRecognizerDirection dir
 }
 
 -(Board*)board {
-  if (!_board) {
-    _board = [Board boardWithPlayerAtSector:SectorZero];
-  }
   return _board;
+}
+
+-(void)setBoard:(Board *)board {
+  [self.children each:^(SKSpriteNode *node) {
+    if (![node.name isEqualToString:@"board"]) {
+      [node runAction:[SKAction fadeOutWithDuration:0.25]];
+    }
+  }];
+  _board = [Board boardWithPlayerAtSector:self.hacker.sector];
+  [_board.reversedNodes each:^(SpriteSectorNode *node) {
+    [self addChild:node];
+  }];
 }
 
 -(SKSpriteNode*)boardNode {
   if (!_boardNode) {
     SKTexture *texture = [SKTexture textureWithCGImage:[[UIImage imageNamed:@"BoardBG"] CGImage]];
     _boardNode = [SKSpriteNode spriteNodeWithTexture:texture size:self.size];
+    [_boardNode setName:@"board"];
     [_boardNode setPosition:CGPointMake(CGRectGetMidX(self.frame),CGRectGetMidY(self.frame))];
   }
   return _boardNode;
@@ -111,9 +123,7 @@ static CGPoint bumpPoint(CGPoint location, UISwipeGestureRecognizerDirection dir
   [view addGestureRecognizer:self.leftRecognizer];
   [view addGestureRecognizer:self.upRecognizer];
   [view addGestureRecognizer:self.downRecognizer];
-  [self.board.reversedNodes each:^(SpriteSectorNode *node) {
-    [self addChild:node];
-  }];
+  [self setBoard:[Board boardWithPlayerAtSector:SectorZero]];
 }
 
 -(CGRect)gridRect {
