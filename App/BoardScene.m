@@ -1,7 +1,7 @@
 #import "BoardScene.h"
 #import "Hacker.h"
 #import "SpriteSectorNode.h"
-#import "BoardGenerator.h"
+#import "Board.h"
 
 static CGPoint bumpPoint(CGPoint location, UISwipeGestureRecognizerDirection direction) {
   CGFloat distance = ((gridSectorLength - nodeSize().width) / 2) - 5;
@@ -29,7 +29,7 @@ static CGPoint bumpPoint(CGPoint location, UISwipeGestureRecognizerDirection dir
   UISwipeGestureRecognizer *_downRecognizer;
   UISwipeGestureRecognizer *_leftRecognizer;
   UISwipeGestureRecognizer *_rightRecognizer;
-  BoardGenerator *_board;
+  Board *_board;
 }
 
 -(SKSpriteNode*)boardNode;
@@ -54,9 +54,9 @@ static CGPoint bumpPoint(CGPoint location, UISwipeGestureRecognizerDirection dir
   return self;
 }
 
--(BoardGenerator*)board {
+-(Board*)board {
   if (!_board) {
-    _board = [BoardGenerator boardWithPlayerAtSector:SectorZero];
+    _board = [Board boardWithPlayerAtSector:SectorZero];
   }
   return _board;
 }

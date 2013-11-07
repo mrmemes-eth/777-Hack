@@ -1,6 +1,6 @@
 #import "SpriteSectorNode.h"
 
-@interface BoardGenerator : NSObject
+@interface Board : NSObject
 
 +(id)boardWithPlayerAtSector:(Sector)sector;
 

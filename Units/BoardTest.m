@@ -1,13 +1,13 @@
 #import <XCTest/XCTest.h>
-#import "BoardGenerator.h"
+#import "Board.h"
 #import <SpriteKit/SpriteKit.h>
 #import "DataNode.h"
 
-@interface BoardGeneratorTest : XCTestCase
+@interface BoardTest : XCTestCase
 
 @end
 
-@implementation BoardGeneratorTest
+@implementation BoardTest
 
 - (void)setUp {
   [super setUp];
@@ -19,21 +19,21 @@
 
 -(void)testSectorIsOccupied {
   Sector sector = SectorMake(1,1);
-  BoardGenerator *board = [BoardGenerator new];
+  Board *board = [Board new];
   XCTAssertFalse([board sectorIsOccupied:sector], @"");
   [board addDataNodeAtSector:sector];
   XCTAssertTrue([board sectorIsOccupied:sector], @"");
 }
 
 -(void)testNodesGenerated {
-  BoardGenerator *board = [BoardGenerator new];
+  Board *board = [Board new];
   [board populateNodes];
   XCTAssertTrue([board.nodes count] >= 4, @"");
   XCTAssertFalse([board.nodes count] > 12, @"");
 }
 
 -(void)testMoveToUnoccupied {
-  BoardGenerator *board = [BoardGenerator new];
+  Board *board = [Board new];
   [board addPlayerAtSector:SectorMake(1, 1)];
   SpriteSectorNode *player =[board.nodes detect:^BOOL(SpriteSectorNode *node) {
     return [node.name isEqualToString:@"hacker"];
@@ -50,7 +50,7 @@
 }
 
 -(void)testMoveToOccupied {
-  BoardGenerator *board = [BoardGenerator new];
+  Board *board = [Board new];
   [board addPlayerAtSector:SectorMake(1, 1)];
   SpriteSectorNode *player =[board.nodes detect:^BOOL(SpriteSectorNode *node) {
     return [node.name isEqualToString:@"hacker"];
@@ -62,7 +62,7 @@
 }
 
 -(void)testMoveOutOfBounds {
-  BoardGenerator *board = [BoardGenerator new];
+  Board *board = [Board new];
   [board addPlayerAtSector:SectorMake(1, 5)];
   SpriteSectorNode *player =[board.nodes detect:^BOOL(SpriteSectorNode *node) {
     return [node.name isEqualToString:@"hacker"];
@@ -71,7 +71,7 @@
                                  inDirection:UISwipeGestureRecognizerDirectionRight];
   XCTAssertEqual(newSector, player.sector, @"");
   
-  board = [BoardGenerator new];
+  board = [Board new];
   [board addPlayerAtSector:SectorMake(0, 0)];
   player =[board.nodes detect:^BOOL(SpriteSectorNode *node) {
     return [node.name isEqualToString:@"hacker"];

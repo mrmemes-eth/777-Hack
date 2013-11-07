@@ -1,4 +1,4 @@
-#import "BoardGenerator.h"
+#import "Board.h"
 #import "DataNode.h"
 #import "Hacker.h"
 #import "WarpNode.h"
@@ -15,7 +15,7 @@ static inline NSArray* shuffleArray(NSArray *array) {
   return mutableArray;
 }
 
-@interface BoardGenerator() {
+@interface Board() {
   NSMutableArray *_nodes;
 }
 -(NSUInteger)nodeCount;
@@ -26,7 +26,7 @@ static inline NSArray* shuffleArray(NSArray *array) {
 -(void)addWarp;
 @end
 
-@implementation BoardGenerator
+@implementation Board
 
 +(id)boardWithPlayerAtSector:(Sector)sector {
   id board = [[[self class] alloc] init];

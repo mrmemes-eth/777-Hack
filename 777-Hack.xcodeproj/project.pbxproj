@@ -11,7 +11,7 @@
 		7C4C36C51828A59900FB680A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C667AEF18243A46006D2EA8 /* Foundation.framework */; };
 		7C4C36C61828A59900FB680A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C667AF318243A46006D2EA8 /* UIKit.framework */; };
 		7C4C36CC1828A59900FB680A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7C4C36CA1828A59900FB680A /* InfoPlist.strings */; };
-		7C4C36D61828A63B00FB680A /* BoardGeneratorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C4C36D51828A63B00FB680A /* BoardGeneratorTest.m */; };
+		7C4C36D61828A63B00FB680A /* BoardTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C4C36D51828A63B00FB680A /* BoardTest.m */; };
 		7C50CB791829E3730058F2B6 /* SpriteSectorNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C50CB781829E3730058F2B6 /* SpriteSectorNode.m */; };
 		7C50CB7E1829E84D0058F2B6 /* WarpNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C50CB7D1829E84D0058F2B6 /* WarpNode.m */; };
 		7C667AF018243A46006D2EA8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C667AEF18243A46006D2EA8 /* Foundation.framework */; };
@@ -27,7 +27,7 @@
 		7C667BCD18258E79006D2EA8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C667BCC18258E79006D2EA8 /* Images.xcassets */; };
 		7C667BD11826D1FE006D2EA8 /* Hacker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C667BD01826D1FE006D2EA8 /* Hacker.m */; };
 		7C667BD41826EECB006D2EA8 /* DataNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C667BD31826EECB006D2EA8 /* DataNode.m */; };
-		7C667BD71826FB5B006D2EA8 /* BoardGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C667BD61826FB5B006D2EA8 /* BoardGenerator.m */; };
+		7C667BD71826FB5B006D2EA8 /* Board.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C667BD61826FB5B006D2EA8 /* Board.m */; };
 		E167A9751B3647CC857E1FE5 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F186E5361B244FFA0E7BD6C /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -47,7 +47,7 @@
 		7C4C36C91828A59900FB680A /* Units-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Units-Info.plist"; sourceTree = "<group>"; };
 		7C4C36CB1828A59900FB680A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7C4C36CF1828A59900FB680A /* Units-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Units-Prefix.pch"; sourceTree = "<group>"; };
-		7C4C36D51828A63B00FB680A /* BoardGeneratorTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardGeneratorTest.m; sourceTree = "<group>"; };
+		7C4C36D51828A63B00FB680A /* BoardTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardTest.m; sourceTree = "<group>"; };
 		7C50CB771829E3730058F2B6 /* SpriteSectorNode.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; path = SpriteSectorNode.h; sourceTree = "<group>"; tabWidth = 2; usesTabs = 0; wrapsLines = 1; };
 		7C50CB781829E3730058F2B6 /* SpriteSectorNode.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.objc; path = SpriteSectorNode.m; sourceTree = "<group>"; tabWidth = 2; usesTabs = 0; wrapsLines = 1; };
 		7C50CB7C1829E84D0058F2B6 /* WarpNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WarpNode.h; sourceTree = "<group>"; };
@@ -75,8 +75,8 @@
 		7C667BD01826D1FE006D2EA8 /* Hacker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Hacker.m; sourceTree = "<group>"; };
 		7C667BD21826EECB006D2EA8 /* DataNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataNode.h; sourceTree = "<group>"; };
 		7C667BD31826EECB006D2EA8 /* DataNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataNode.m; sourceTree = "<group>"; };
-		7C667BD51826FB5B006D2EA8 /* BoardGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardGenerator.h; sourceTree = "<group>"; };
-		7C667BD61826FB5B006D2EA8 /* BoardGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardGenerator.m; sourceTree = "<group>"; };
+		7C667BD51826FB5B006D2EA8 /* Board.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Board.h; sourceTree = "<group>"; };
+		7C667BD61826FB5B006D2EA8 /* Board.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Board.m; sourceTree = "<group>"; };
 		7C9D89A21829FEC4000BF6D9 /* SectorFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectorFunctions.h; sourceTree = "<group>"; };
 		869CFEEEE00C4A1D844E4A6A /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = ../Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -111,7 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				7C4C36C81828A59900FB680A /* Supporting Files */,
-				7C4C36D51828A63B00FB680A /* BoardGeneratorTest.m */,
+				7C4C36D51828A63B00FB680A /* BoardTest.m */,
 			);
 			path = Units;
 			sourceTree = "<group>";
@@ -189,8 +189,8 @@
 				7C50CB781829E3730058F2B6 /* SpriteSectorNode.m */,
 				7C667BD21826EECB006D2EA8 /* DataNode.h */,
 				7C667BD31826EECB006D2EA8 /* DataNode.m */,
-				7C667BD51826FB5B006D2EA8 /* BoardGenerator.h */,
-				7C667BD61826FB5B006D2EA8 /* BoardGenerator.m */,
+				7C667BD51826FB5B006D2EA8 /* Board.h */,
+				7C667BD61826FB5B006D2EA8 /* Board.m */,
 				7C50CB7C1829E84D0058F2B6 /* WarpNode.h */,
 				7C50CB7D1829E84D0058F2B6 /* WarpNode.m */,
 				7C9D89A21829FEC4000BF6D9 /* SectorFunctions.h */,
@@ -337,7 +337,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7C4C36D61828A63B00FB680A /* BoardGeneratorTest.m in Sources */,
+				7C4C36D61828A63B00FB680A /* BoardTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,7 +348,7 @@
 				7C667BD41826EECB006D2EA8 /* DataNode.m in Sources */,
 				7C50CB7E1829E84D0058F2B6 /* WarpNode.m in Sources */,
 				7C667BC818258E69006D2EA8 /* AppDelegate.m in Sources */,
-				7C667BD71826FB5B006D2EA8 /* BoardGenerator.m in Sources */,
+				7C667BD71826FB5B006D2EA8 /* Board.m in Sources */,
 				7C667BD11826D1FE006D2EA8 /* Hacker.m in Sources */,
 				7C667BCB18258E69006D2EA8 /* WelcomeScene.m in Sources */,
 				7C667AFE18243A46006D2EA8 /* main.m in Sources */,
