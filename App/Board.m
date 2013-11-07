@@ -47,6 +47,10 @@ static inline NSArray* shuffleArray(NSArray *array) {
   return _nodes;
 }
 
+-(NSArray*)reversedNodes {
+  return [[self.nodes reverseObjectEnumerator] allObjects];
+}
+
 -(void)addPlayerAtSector:(Sector)sector {
   [self.nodes addObject:[Hacker nodeWithSector:sector]];
 }
@@ -104,8 +108,15 @@ static inline NSArray* shuffleArray(NSArray *array) {
   }
 }
 
+
 -(Sector)newSectorForNode:(SpriteSectorNode*)node
               inDirection:(UISwipeGestureRecognizerDirection)direction {
+  return [self newSectorForNode:node inDirection:direction collisionCheck:YES];
+}
+
+-(Sector)newSectorForNode:(SpriteSectorNode*)node
+              inDirection:(UISwipeGestureRecognizerDirection)direction
+          collisionCheck:(BOOL)check {
   Sector sector = SectorMake(node.sector.row, node.sector.col);
   switch (direction) {
     case UISwipeGestureRecognizerDirectionRight:
@@ -121,11 +132,21 @@ static inline NSArray* shuffleArray(NSArray *array) {
       sector.row -= 1;
       break;
   }
-  if ([self sectorIsUnoccupied:sector] && [self sectorIsInBounds:sector]) {
-    return sector;
+  if (check) {
+    if ([self sectorIsUnoccupied:sector] && [self sectorIsInBounds:sector]) {
+      return sector;
+    } else {
+      return node.sector;
+    }
   } else {
-    return node.sector;
+    return sector;
   }
+}
+
+-(SpriteSectorNode*)nodeAtSector:(Sector)sector {
+  return [self.nodes detect:^BOOL(SpriteSectorNode *node) {
+    return SectorEqualToSector(sector, node.sector);
+  }];
 }
 
 @end

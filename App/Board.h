@@ -5,6 +5,7 @@
 +(id)boardWithPlayerAtSector:(Sector)sector;
 
 -(NSMutableArray*)nodes;
+-(NSArray*)reversedNodes;
 
 -(void)addPlayerAtSector:(Sector)sector;
 -(void)addDataNodeAtSector:(Sector)sector;
@@ -15,6 +16,10 @@
 
 -(Sector)newSectorForNode:(SpriteSectorNode*)node
               inDirection:(UISwipeGestureRecognizerDirection)direction;
+-(Sector)newSectorForNode:(SpriteSectorNode*)node
+              inDirection:(UISwipeGestureRecognizerDirection)direction
+          collisionCheck:(BOOL)check;
+-(SpriteSectorNode*)nodeAtSector:(Sector)sector;
 
 -(void)populateNodes;
 
