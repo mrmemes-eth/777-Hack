@@ -12,13 +12,17 @@
 
 -(id)initWithSector:(Sector)sector {
   if (self = [self init]) {
-    [self setPosition:CGPointFromSector(sector)];
+    [self setSector:sector];
   }
   return self;
 }
 
 -(Sector)sector {
   return SectorFromCGPoint(self.position);
+}
+
+-(void)setSector:(Sector)sector {
+  [self setPosition:CGPointFromSector(sector)];
 }
 
 @end

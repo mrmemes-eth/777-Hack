@@ -17,6 +17,7 @@ static inline NSArray* shuffleArray(NSArray *array) {
 
 @interface Board() {
   NSMutableArray *_nodes;
+  Hacker *_hacker;
 }
 -(NSUInteger)nodeCount;
 -(Sector)randomUnoccupiedSector;
@@ -51,8 +52,16 @@ static inline NSArray* shuffleArray(NSArray *array) {
   return [[self.nodes reverseObjectEnumerator] allObjects];
 }
 
+-(Hacker*)hacker {
+  if (!_hacker) {
+    _hacker = [Hacker new];
+  }
+  return _hacker;
+}
+
 -(void)addPlayerAtSector:(Sector)sector {
-  [self.nodes addObject:[Hacker nodeWithSector:sector]];
+  [self.hacker setSector:sector];
+  [self.nodes addObject:self.hacker];
 }
 
 -(void)addWarp {

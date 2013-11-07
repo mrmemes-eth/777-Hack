@@ -1,11 +1,15 @@
 #import "SpriteSectorNode.h"
 
+@class Hacker;
+
 @interface Board : NSObject
 
 +(id)boardWithPlayerAtSector:(Sector)sector;
 
 -(NSMutableArray*)nodes;
 -(NSArray*)reversedNodes;
+
+-(Hacker*)hacker;
 
 -(void)addPlayerAtSector:(Sector)sector;
 -(void)addDataNodeAtSector:(Sector)sector;
