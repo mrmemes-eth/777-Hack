@@ -9,6 +9,7 @@
     [self setColor:[SKColor yellowColor]];
     [self setSize:nodeSize()];
     [self setName:@"hacker"];
+    [self setHealth:kHackerFullHealth];
   }
   return self;
 }
@@ -21,6 +22,26 @@
     [_physicsBody setContactTestBitMask:projectileCategory];
   }
   return _physicsBody;
+}
+
+-(void)loseHealth {
+  if (self.health > kHackerDead) self.health --;
+}
+
+-(void)gainHealth {
+  if (self.hasPartialHealth) self.health ++;
+}
+
+-(BOOL)isDead {
+  return self.health == kHackerDead;
+}
+
+-(BOOL)hasFullHealth {
+  return self.health == kHackerFullHealth;
+}
+
+-(BOOL)hasPartialHealth {
+  return !self.hasFullHealth && !self.isDead;
 }
 
 @end

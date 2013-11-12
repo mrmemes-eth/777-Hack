@@ -28,6 +28,7 @@
 		7C667BD11826D1FE006D2EA8 /* Hacker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C667BD01826D1FE006D2EA8 /* Hacker.m */; };
 		7C667BD41826EECB006D2EA8 /* DataNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C667BD31826EECB006D2EA8 /* DataNode.m */; };
 		7C667BD71826FB5B006D2EA8 /* Board.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C667BD61826FB5B006D2EA8 /* Board.m */; };
+		7C8E24CB1831E20000564773 /* HackerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C8E24CA1831E20000564773 /* HackerTest.m */; };
 		E167A9751B3647CC857E1FE5 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F186E5361B244FFA0E7BD6C /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -77,6 +78,7 @@
 		7C667BD31826EECB006D2EA8 /* DataNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataNode.m; sourceTree = "<group>"; };
 		7C667BD51826FB5B006D2EA8 /* Board.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Board.h; sourceTree = "<group>"; };
 		7C667BD61826FB5B006D2EA8 /* Board.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Board.m; sourceTree = "<group>"; };
+		7C8E24CA1831E20000564773 /* HackerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HackerTest.m; sourceTree = "<group>"; };
 		7C9D89A21829FEC4000BF6D9 /* SectorFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectorFunctions.h; sourceTree = "<group>"; };
 		869CFEEEE00C4A1D844E4A6A /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = ../Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -112,6 +114,7 @@
 			children = (
 				7C4C36C81828A59900FB680A /* Supporting Files */,
 				7C4C36D51828A63B00FB680A /* BoardTest.m */,
+				7C8E24CA1831E20000564773 /* HackerTest.m */,
 			);
 			path = Units;
 			sourceTree = "<group>";
@@ -338,6 +341,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7C4C36D61828A63B00FB680A /* BoardTest.m in Sources */,
+				7C8E24CB1831E20000564773 /* HackerTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
