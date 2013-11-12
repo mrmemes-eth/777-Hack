@@ -53,6 +53,7 @@
 		7C50CB781829E3730058F2B6 /* SpriteSectorNode.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.objc; path = SpriteSectorNode.m; sourceTree = "<group>"; tabWidth = 2; usesTabs = 0; wrapsLines = 1; };
 		7C50CB7C1829E84D0058F2B6 /* WarpNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WarpNode.h; sourceTree = "<group>"; };
 		7C50CB7D1829E84D0058F2B6 /* WarpNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WarpNode.m; sourceTree = "<group>"; };
+		7C624C461831F39C00F592C0 /* NotificatonConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificatonConstants.h; sourceTree = "<group>"; };
 		7C667AEC18243A46006D2EA8 /* 777-Hack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "777-Hack.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C667AEF18243A46006D2EA8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7C667AF118243A46006D2EA8 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -188,6 +189,7 @@
 				7C667BD31826EECB006D2EA8 /* DataNode.m */,
 				7C667BCF1826D1FE006D2EA8 /* Hacker.h */,
 				7C667BD01826D1FE006D2EA8 /* Hacker.m */,
+				7C624C461831F39C00F592C0 /* NotificatonConstants.h */,
 				7C9D89A21829FEC4000BF6D9 /* SectorFunctions.h */,
 				7C50CB771829E3730058F2B6 /* SpriteSectorNode.h */,
 				7C50CB781829E3730058F2B6 /* SpriteSectorNode.m */,
