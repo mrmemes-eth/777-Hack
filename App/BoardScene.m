@@ -60,19 +60,18 @@ static CGPoint bumpPoint(CGPoint location, UISwipeGestureRecognizerDirection dir
   return _board;
 }
 
+-(NSArray*)removableChildren {
+  return [self.children filter:^BOOL(id node) {
+    return ![node isEqual:self.boardNode] && ![node isEqual:self.hacker];
+  }];
+}
+
 -(void)setBoard:(Board *)board {
-  [self.children each:^(SKSpriteNode *node) {
-    if (![node.name isEqualToString:@"board"]) {
-      [node runAction:[SKAction fadeOutWithDuration:0.25]];
-    }
-  }];
-  _board = [Board boardWithHacker:self.hacker atSector:self.hacker.sector];
-  [_board.reversedNodes each:^(SpriteSectorNode *node) {
-    [node setAlpha:0.0];
+  [self removeChildrenInArray:self.removableChildren];
+  _board = board;
+  [_board.reversedNodes each:^(SKSpriteNode *node) {
     if (![node inParentHierarchy:self]) [self addChild:node];
-    [node runAction:[SKAction fadeInWithDuration:0.25]];
   }];
-  [self.hacker setZPosition:100];
 }
 
 -(SKSpriteNode*)boardNode {
