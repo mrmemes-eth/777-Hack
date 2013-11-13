@@ -3,6 +3,7 @@
 @interface Hacker()
 -(void)healthDidChange;
 -(void)updateTexture;
+-(void)didEnterWarpZone;
 @end
 
 @implementation Hacker {
@@ -14,6 +15,9 @@
     [self setSize:nodeSize()];
     [self setName:@"hacker"];
     [self setHealth:kHackerFullHealth];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didEnterWarpZone)
+                                                 name:HackerDidEnterWarpZone object:nil];
   }
   return self;
 }
@@ -29,8 +33,8 @@
 }
 
 -(void)updateTexture {
-  NSArray *textures = @[[SKColor redColor], [SKColor redColor], [SKColor orangeColor], [SKColor yellowColor]];
-  [self setColor:textures[self.health]];
+  NSArray *textures = @[[SKColor grayColor], [SKColor redColor], [SKColor orangeColor], [SKColor yellowColor]];
+  [self runAction:[SKAction colorizeWithColor:textures[self.health] colorBlendFactor:1.0 duration:0.15]];
 }
 
 -(void)setHealth:(HackerHealth)health {
@@ -61,6 +65,10 @@
 -(void)healthDidChange {
   [self updateTexture];
   [[NSNotificationCenter defaultCenter] postNotificationName:HackerHealthDidChangeNotification object:self];
+}
+
+-(void)didEnterWarpZone {
+  [self gainHealth];
 }
 
 @end

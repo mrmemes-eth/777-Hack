@@ -5,3 +5,9 @@ static NSString * const NotificationDomain = @"com.777_hack.notification";
 
 #define HackerHealthDidChangeNotification \
   ScopeNotification(@"hacker.health.didChange")
+
+#define HackerWillEnterWarpZone \
+  ScopeNotification(@"hacker.willEnter.warpZone")
+
+#define HackerDidEnterWarpZone \
+  ScopeNotification(@"hacker.didEnter.warpZone")

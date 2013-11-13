@@ -15,6 +15,24 @@ static inline NSArray* shuffleArray(NSArray *array) {
   return mutableArray;
 }
 
+static inline Sector sectorInDirection(Sector sector, UISwipeGestureRecognizerDirection direction) {
+  switch (direction) {
+    case UISwipeGestureRecognizerDirectionRight:
+      sector.col += 1;
+      break;
+    case UISwipeGestureRecognizerDirectionLeft:
+      sector.col -= 1;
+      break;
+    case UISwipeGestureRecognizerDirectionUp:
+      sector.row += 1;
+      break;
+    case UISwipeGestureRecognizerDirectionDown:
+      sector.row -= 1;
+      break;
+  }
+  return sector;
+}
+
 @interface Board() {
   NSMutableArray *_nodes;
 }
@@ -110,7 +128,6 @@ static inline NSArray* shuffleArray(NSArray *array) {
   }
 }
 
-
 -(Sector)newSectorForNode:(SpriteSectorNode*)node
               inDirection:(UISwipeGestureRecognizerDirection)direction {
   return [self newSectorForNode:node inDirection:direction collisionCheck:YES];
@@ -118,30 +135,16 @@ static inline NSArray* shuffleArray(NSArray *array) {
 
 -(Sector)newSectorForNode:(SpriteSectorNode*)node
               inDirection:(UISwipeGestureRecognizerDirection)direction
-          collisionCheck:(BOOL)check {
-  Sector sector = SectorMake(node.sector.row, node.sector.col);
-  switch (direction) {
-    case UISwipeGestureRecognizerDirectionRight:
-      sector.col += 1;
-      break;
-    case UISwipeGestureRecognizerDirectionLeft:
-      sector.col -= 1;
-      break;
-    case UISwipeGestureRecognizerDirectionUp:
-      sector.row += 1;
-      break;
-    case UISwipeGestureRecognizerDirectionDown:
-      sector.row -= 1;
-      break;
-  }
-  if (check) {
-    if ([self sectorIsUnoccupied:sector] && [self sectorIsInBounds:sector]) {
-      return sector;
-    } else {
-      return node.sector;
-    }
-  } else {
+           collisionCheck:(BOOL)check {
+  Sector sector = sectorInDirection(node.sector, direction);
+  if ([[self nodeAtSector:sector] isKindOfClass:[WarpNode class]]) {
+    if ([node isKindOfClass:[Hacker class]])
+      [[NSNotificationCenter defaultCenter] postNotificationName:HackerWillEnterWarpZone object:nil];
     return sector;
+  } else if ([self sectorIsUnoccupied:sector] && [self sectorIsInBounds:sector]) {
+    return sector;
+  } else {
+    return node.sector;
   }
 }
 

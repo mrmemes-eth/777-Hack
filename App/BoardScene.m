@@ -32,6 +32,8 @@ static CGPoint bumpPoint(CGPoint location, UISwipeGestureRecognizerDirection dir
   Board *_board;
 }
 
+@property BOOL hackerIsEnteringWarpZone;
+
 -(SKSpriteNode*)boardNode;
 -(Hacker*)hacker;
 -(Board*)board;
@@ -43,6 +45,8 @@ static CGPoint bumpPoint(CGPoint location, UISwipeGestureRecognizerDirection dir
 -(UISwipeGestureRecognizer*)rightRecognizer;
 
 -(void)handleMovement:(UISwipeGestureRecognizer*)recognizer;
+-(void)hackerWillEnterWarpZone;
+-(void)hackerDidEnterWarpZone;
 
 @end
 
@@ -52,6 +56,12 @@ static CGPoint bumpPoint(CGPoint location, UISwipeGestureRecognizerDirection dir
   if (self = [super initWithSize:size]) {
     [self setScaleMode:SKSceneScaleModeAspectFit];
     [self addChild:self.boardNode];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(hackerWillEnterWarpZone)
+                                                 name:HackerWillEnterWarpZone object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(hackerDidEnterWarpZone)
+                                                 name:HackerDidEnterWarpZone object:nil];
   }
   return self;
 }
@@ -137,22 +147,27 @@ static CGPoint bumpPoint(CGPoint location, UISwipeGestureRecognizerDirection dir
 
 -(void)handleMovement:(UISwipeGestureRecognizer *)recognizer {
   Sector newSector = [self.board newSectorForNode:self.hacker inDirection:recognizer.direction];
-  // the majority of the following logic should probably just be moved to newSectorForNode:inDirection:collisionCheck:
   if (SectorEqualToSector(self.hacker.sector, newSector)) {
-    newSector = [self.board newSectorForNode:self.hacker inDirection:recognizer.direction collisionCheck:NO];
-    if ([[[self.board nodeAtSector:newSector] name] isEqualToString:@"warp"]) {
-      [self.hacker runAction:[SKAction moveTo:CGPointFromSector(newSector) duration:0.25] completion:^{
-        [self.hacker gainHealth];
-        [self setBoard:[Board boardWithHacker:self.hacker atSector:newSector]];
-      }];
-    } else {
-      CGPoint point = bumpPoint(self.hacker.position, recognizer.direction);
-      [self.hacker runAction:[SKAction sequence:@[[SKAction moveTo:point duration:0.05],
-                                                  [SKAction moveTo:self.hacker.position duration:0.05]]]];
-    }
+    CGPoint point = bumpPoint(self.hacker.position, recognizer.direction);
+    [self.hacker runAction:[SKAction sequence:@[[SKAction moveTo:point duration:0.05],
+                                                [SKAction moveTo:self.hacker.position duration:0.05]]]];
   } else {
-    [self.hacker runAction:[SKAction moveTo:CGPointFromSector(newSector) duration:0.25]];
+    [self.hacker runAction:[SKAction moveTo:CGPointFromSector(newSector) duration:0.25] completion:^{
+      if (self.hackerIsEnteringWarpZone) {
+        [self setBoard:[Board boardWithHacker:self.hacker atSector:self.hacker.sector]];
+        [[NSNotificationCenter defaultCenter] postNotificationName:HackerDidEnterWarpZone object:nil];
+      }
+    }];
   }
 }
+
+-(void)hackerWillEnterWarpZone {
+  [self setHackerIsEnteringWarpZone:YES];
+}
+
+-(void)hackerDidEnterWarpZone {
+  [self setHackerIsEnteringWarpZone:NO];
+}
+
 
 @end
