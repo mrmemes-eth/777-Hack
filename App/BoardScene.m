@@ -66,12 +66,13 @@ static CGPoint bumpPoint(CGPoint location, UISwipeGestureRecognizerDirection dir
       [node runAction:[SKAction fadeOutWithDuration:0.25]];
     }
   }];
-  _board = [Board boardWithPlayerAtSector:self.hacker.sector];
+  _board = [Board boardWithHacker:self.hacker atSector:self.hacker.sector];
   [_board.reversedNodes each:^(SpriteSectorNode *node) {
     [node setAlpha:0.0];
-    [self addChild:node];
+    if (![node inParentHierarchy:self]) [self addChild:node];
     [node runAction:[SKAction fadeInWithDuration:0.25]];
   }];
+  [self.hacker setZPosition:100];
 }
 
 -(SKSpriteNode*)boardNode {
@@ -85,7 +86,10 @@ static CGPoint bumpPoint(CGPoint location, UISwipeGestureRecognizerDirection dir
 }
 
 -(Hacker*)hacker {
-  return self.board.hacker;
+  if (!_hacker) {
+    _hacker = [Hacker new];
+  }
+  return _hacker;
 }
 
 -(UISwipeGestureRecognizer*)rightRecognizer {
@@ -125,7 +129,7 @@ static CGPoint bumpPoint(CGPoint location, UISwipeGestureRecognizerDirection dir
   [view addGestureRecognizer:self.leftRecognizer];
   [view addGestureRecognizer:self.upRecognizer];
   [view addGestureRecognizer:self.downRecognizer];
-  [self setBoard:[Board boardWithPlayerAtSector:SectorZero]];
+  [self setBoard:[Board boardWithHacker:self.hacker atSector:SectorZero]];
 }
 
 -(CGRect)gridRect {
@@ -139,7 +143,7 @@ static CGPoint bumpPoint(CGPoint location, UISwipeGestureRecognizerDirection dir
     newSector = [self.board newSectorForNode:self.hacker inDirection:recognizer.direction collisionCheck:NO];
     if ([[[self.board nodeAtSector:newSector] name] isEqualToString:@"warp"]) {
       [self.hacker runAction:[SKAction moveTo:CGPointFromSector(newSector) duration:0.25] completion:^{
-        [self setBoard:[Board boardWithPlayerAtSector:newSector]];
+        [self setBoard:[Board boardWithHacker:self.hacker atSector:newSector]];
       }];
     } else {
       CGPoint point = bumpPoint(self.hacker.position, recognizer.direction);

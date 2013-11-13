@@ -4,14 +4,14 @@
 
 @interface Board : NSObject
 
-+(id)boardWithPlayerAtSector:(Sector)sector;
+@property(nonatomic,strong) Hacker *hacker;
+
++(id)boardWithHacker:(Hacker*)hacker atSector:(Sector)sector;
 
 -(NSMutableArray*)nodes;
 -(NSArray*)reversedNodes;
 
--(Hacker*)hacker;
-
--(void)addPlayerAtSector:(Sector)sector;
+-(void)addHacker:(Hacker*)hacker atSector:(Sector)sector;
 -(void)addDataNodeAtSector:(Sector)sector;
 
 -(BOOL)sectorIsOccupied:(Sector)sector;
