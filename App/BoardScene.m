@@ -143,6 +143,7 @@ static CGPoint bumpPoint(CGPoint location, UISwipeGestureRecognizerDirection dir
     newSector = [self.board newSectorForNode:self.hacker inDirection:recognizer.direction collisionCheck:NO];
     if ([[[self.board nodeAtSector:newSector] name] isEqualToString:@"warp"]) {
       [self.hacker runAction:[SKAction moveTo:CGPointFromSector(newSector) duration:0.25] completion:^{
+        [self.hacker gainHealth];
         [self setBoard:[Board boardWithHacker:self.hacker atSector:newSector]];
       }];
     } else {
