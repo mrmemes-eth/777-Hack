@@ -10,7 +10,7 @@ static inline NSArray* shuffleArray(NSArray *array) {
   NSMutableArray *mutableArray = [NSMutableArray arrayWithArray:array];
    for (NSInteger i = mutableArray.count-1; i > 0; i--) {
     [mutableArray exchangeObjectAtIndex:i
-                      withObjectAtIndex:arc4random_uniform(i+1)];
+                      withObjectAtIndex:arc4random_uniform((uint32_t)i+1)];
    }
   return mutableArray;
 }
