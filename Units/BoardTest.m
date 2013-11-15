@@ -3,6 +3,7 @@
 #import <SpriteKit/SpriteKit.h>
 #import "DataNode.h"
 #import "Hacker.h"
+#import "WarpNode.h"
 
 @interface BoardTest : XCTestCase
 
@@ -80,6 +81,25 @@
   newSector = [board newSectorForNode:player
                                  inDirection:UISwipeGestureRecognizerDirectionLeft];
   XCTAssertEqual(newSector, player.sector, @"");
+}
+
+-(void)testMoveOntoWarpZone {
+  Board *board = [Board new];
+  Hacker *hacker = [Hacker new];
+  WarpNode *warp = [WarpNode nodeWithSector:SectorMake(1, 0)];
+  [board addHacker:hacker atSector:SectorMake(0, 0)];
+  [board.nodes addObject:warp];
+  Sector newSector = [board newSectorForNode:hacker
+                                 inDirection:UISwipeGestureRecognizerDirectionUp];
+  XCTAssertEqual(newSector, newSector, @"");
+  
+  board = [Board new];
+  warp = [WarpNode nodeWithSector:SectorMake(0, 1)];
+  [board addHacker:hacker atSector:SectorMake(0, 0)];
+  [board.nodes addObject:warp];
+  newSector = [board newSectorForNode:hacker
+                                 inDirection:UISwipeGestureRecognizerDirectionRight];
+  XCTAssertEqual(newSector, newSector, @"");
 }
 
 @end
