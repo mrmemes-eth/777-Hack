@@ -2,6 +2,7 @@
 #import "Board.h"
 #import <SpriteKit/SpriteKit.h>
 #import "DataNode.h"
+#import "Hacker.h"
 
 @interface BoardTest : XCTestCase
 
@@ -34,7 +35,7 @@
 
 -(void)testMoveToUnoccupied {
   Board *board = [Board new];
-  [board addPlayerAtSector:SectorMake(1, 1)];
+  [board addHacker:[Hacker new] atSector:SectorMake(1, 1)];
   SpriteSectorNode *player =[board.nodes detect:^BOOL(SpriteSectorNode *node) {
     return [node.name isEqualToString:@"hacker"];
   }];
@@ -51,7 +52,7 @@
 
 -(void)testMoveToOccupied {
   Board *board = [Board new];
-  [board addPlayerAtSector:SectorMake(1, 1)];
+  [board addHacker:[Hacker new] atSector:SectorMake(1, 1)];
   SpriteSectorNode *player =[board.nodes detect:^BOOL(SpriteSectorNode *node) {
     return [node.name isEqualToString:@"hacker"];
   }];
@@ -63,7 +64,7 @@
 
 -(void)testMoveOutOfBounds {
   Board *board = [Board new];
-  [board addPlayerAtSector:SectorMake(1, 5)];
+  [board addHacker:[Hacker new] atSector:SectorMake(1, 5)];
   SpriteSectorNode *player =[board.nodes detect:^BOOL(SpriteSectorNode *node) {
     return [node.name isEqualToString:@"hacker"];
   }];
@@ -72,7 +73,7 @@
   XCTAssertEqual(newSector, player.sector, @"");
   
   board = [Board new];
-  [board addPlayerAtSector:SectorMake(0, 0)];
+  [board addHacker:[Hacker new] atSector:SectorMake(0, 0)];
   player =[board.nodes detect:^BOOL(SpriteSectorNode *node) {
     return [node.name isEqualToString:@"hacker"];
   }];
