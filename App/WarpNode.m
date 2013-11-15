@@ -7,6 +7,7 @@
     [self setColor:[SKColor orangeColor]];
     [self setSize:nodeSize()];
     [self setName:@"warp"];
+    [self setZPosition:1];
   }
   return self;
 }

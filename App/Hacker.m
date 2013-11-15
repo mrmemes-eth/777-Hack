@@ -15,6 +15,7 @@
     [self setSize:nodeSize()];
     [self setName:@"hacker"];
     [self setHealth:kHackerFullHealth];
+    [self setZPosition:100];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(didEnterWarpZone)
                                                  name:HackerDidEnterWarpZone object:nil];

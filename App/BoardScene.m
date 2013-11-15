@@ -90,6 +90,7 @@ static CGPoint bumpPoint(CGPoint location, UISwipeGestureRecognizerDirection dir
     _boardNode = [SKSpriteNode spriteNodeWithTexture:texture size:self.size];
     [_boardNode setName:@"board"];
     [_boardNode setPosition:CGPointMake(CGRectGetMidX(self.frame),CGRectGetMidY(self.frame))];
+    [_boardNode setZPosition:0];
   }
   return _boardNode;
 }

@@ -8,6 +8,7 @@
   if(self = [super init]) {
     [self setColor:[SKColor greenColor]];
     [self setSize:nodeSize()];
+    [self setZPosition:1];
     [self setName:@"data_node"];
   }
   return self;
