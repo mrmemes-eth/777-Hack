@@ -130,12 +130,6 @@ static inline Sector sectorInDirection(Sector sector, UISwipeGestureRecognizerDi
 
 -(Sector)newSectorForNode:(SpriteSectorNode*)node
               inDirection:(UISwipeGestureRecognizerDirection)direction {
-  return [self newSectorForNode:node inDirection:direction collisionCheck:YES];
-}
-
--(Sector)newSectorForNode:(SpriteSectorNode*)node
-              inDirection:(UISwipeGestureRecognizerDirection)direction
-           collisionCheck:(BOOL)check {
   Sector sector = sectorInDirection(node.sector, direction);
   if ([[self nodeAtSector:sector] isKindOfClass:[WarpNode class]]) {
     if ([node isKindOfClass:[Hacker class]])
