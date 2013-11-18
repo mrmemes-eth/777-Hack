@@ -13,10 +13,6 @@ typedef struct {
   NSUInteger col;
 } Sector;
 
-static inline NSUInteger randomBetween(NSUInteger min, NSUInteger max) {
-  return min + arc4random() % (max - min);
-}
-
 static inline Sector SectorMake(NSUInteger row, NSUInteger col) {
   return (Sector) {row, col};
 }
@@ -31,7 +27,7 @@ static inline NSInteger sectorToCoordinate(NSUInteger sectorSegment) {
 }
 
 static inline NSInteger coordinateToSector(NSUInteger coordinate) {
-  return coordinate / gridSectorLength;
+  return (coordinate - gridSectorCenter) / gridSectorLength;
 }
 
 static inline CGPoint CGPointFromSector(Sector sector) {
@@ -44,6 +40,10 @@ static inline Sector SectorFromCGPoint(CGPoint point) {
 
 static inline BOOL SectorEqualToSector(Sector sector1, Sector sector2) {
   return sector1.col == sector2.col && sector1.row == sector2.row;
+}
+
+static inline BOOL SectorIsContiguousWithSector(Sector sector1, Sector sector2) {
+  return sector1.col == sector2.col || sector1.row == sector2.row;
 }
 
 #define SectorZero SectorMake(0,0)
