@@ -55,4 +55,17 @@
   XCTAssertEqual(coordinateToSector(704), 5, @"");
 }
 
+-(void)testCGPointFromSector {
+  XCTAssertEqual(CGPointFromSector(SectorMake(0, 0)), CGPointMake(64, 64), @"");
+}
+
+-(void)testSectorFromCGPoint {
+  XCTAssertEqual(SectorFromCGPoint(CGPointMake(192, 192)), SectorMake(1, 1), @"");
+}
+
+-(void)testSectorEqualToSector {
+  XCTAssertTrue(SectorEqualToSector(SectorMake(0, 0), SectorMake(0, 0)), @"");
+  XCTAssertFalse(SectorEqualToSector(SectorMake(0, 0), SectorMake(0, 1)), @"");
+}
+
 @end
