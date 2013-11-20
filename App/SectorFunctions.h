@@ -42,8 +42,30 @@ static inline BOOL SectorEqualToSector(Sector sector1, Sector sector2) {
   return sector1.col == sector2.col && sector1.row == sector2.row;
 }
 
-static inline BOOL SectorIsContiguousWithSector(Sector sector1, Sector sector2) {
-  return sector1.col == sector2.col || sector1.row == sector2.row;
+static inline BOOL SectorIsAdjacentToSector(Sector sector1, Sector sector2) {
+  return abs(sector1.row - sector2.row) <= 1 && abs(sector1.col - sector2.col) <= 1;
+}
+
+static inline BOOL SectorIsWithinBoard(Sector sector) {
+  return sector.col < gridSectors && sector.row < gridSectors;
+}
+
+static inline Sector SectorInDirection(Sector sector, UISwipeGestureRecognizerDirection direction) {
+  switch (direction) {
+    case UISwipeGestureRecognizerDirectionRight:
+      sector.col += 1;
+      break;
+    case UISwipeGestureRecognizerDirectionLeft:
+      sector.col -= 1;
+      break;
+    case UISwipeGestureRecognizerDirectionUp:
+      sector.row += 1;
+      break;
+    case UISwipeGestureRecognizerDirectionDown:
+      sector.row -= 1;
+      break;
+  }
+  return sector;
 }
 
 #define SectorZero SectorMake(0,0)

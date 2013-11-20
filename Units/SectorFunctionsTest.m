@@ -68,4 +68,32 @@
   XCTAssertFalse(SectorEqualToSector(SectorMake(0, 0), SectorMake(0, 1)), @"");
 }
 
+-(void)testSectorIsNotAdjacentToSector {
+  XCTAssertFalse(SectorIsAdjacentToSector(SectorMake(0, 0), SectorMake(5, 5)), @"");
+  XCTAssertFalse(SectorIsAdjacentToSector(SectorMake(0, 0), SectorMake(1, 2)), @"");
+  XCTAssertFalse(SectorIsAdjacentToSector(SectorMake(0, 1), SectorMake(3, 1)), @"");
+  XCTAssertFalse(SectorIsAdjacentToSector(SectorMake(3, 0), SectorMake(3, 5)), @"");
+}
+
+-(void)testSectorIsAdjacentToSector {
+  XCTAssertTrue(SectorIsAdjacentToSector(SectorMake(0, 0), SectorMake(0, 1)), @"");
+  XCTAssertTrue(SectorIsAdjacentToSector(SectorMake(5, 5), SectorMake(4, 5)), @"");
+  XCTAssertTrue(SectorIsAdjacentToSector(SectorMake(0, 0), SectorMake(1, 1)), @"");
+  XCTAssertTrue(SectorIsAdjacentToSector(SectorMake(3, 3), SectorMake(2, 2)), @"");
+  XCTAssertTrue(SectorIsAdjacentToSector(SectorMake(4, 4), SectorMake(5, 5)), @"");
+}
+
+-(void)testSectorIsWithinBoard {
+  XCTAssertTrue(SectorIsWithinBoard(SectorMake(1, 2)), @"");
+  XCTAssertTrue(SectorIsWithinBoard(SectorMake(0, 0)), @"");
+  XCTAssertTrue(SectorIsWithinBoard(SectorMake(5, 5)), @"");
+}
+
+-(void)testSectorIsNotWithinBoard {
+  XCTAssertFalse(SectorIsWithinBoard(SectorMake(5, 6)), @"");
+  XCTAssertFalse(SectorIsWithinBoard(SectorMake(6, 0)), @"");
+  XCTAssertFalse(SectorIsWithinBoard(SectorMake(42, 1)), @"");
+}
+
+
 @end
