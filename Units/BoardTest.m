@@ -1,6 +1,6 @@
 #import <XCTest/XCTest.h>
-#import "Board.h"
 #import <SpriteKit/SpriteKit.h>
+#import "Board.h"
 #import "DataNode.h"
 #import "Hacker.h"
 #import "WarpNode.h"
@@ -92,5 +92,50 @@
                           inDirection:UISwipeGestureRecognizerDirectionRight];
   XCTAssertEqual(newSector, newSector, @"");
 }
+
+-(void)testNodesContiguousWithNode {
+  Board *board = [Board new];
+  DataNode *node1 = [DataNode nodeWithSector:SectorMake(1, 0)];
+  DataNode *node2 = [DataNode nodeWithSector:SectorMake(1, 1)];
+  DataNode *node3 = [DataNode nodeWithSector:SectorMake(0, 1)];
+  [board.nodes addObjectsFromArray:@[node1,node3]];
+  NSArray *expected = @[node1,node3];
+  XCTAssertEqualObjects([board nodesAdjacentToNode:node2], expected, @"");
+}
+
+-(void)testPlacementWouldBlockBoard {
+  Board *board = [Board new];
+  DataNode *node1 = [DataNode nodeWithSector:SectorMake(1, 0)];
+  DataNode *node2 = [DataNode nodeWithSector:SectorMake(1, 1)];
+  [board.nodes addObjectsFromArray:@[node1,node2]];
+  XCTAssertTrue([board placementWouldBlockBoard:SectorMake(0, 1)], @"");
+}
+
+-(void)testPlacementWouldBlockBoardDiagonals {
+  Board *board = [Board new];
+  DataNode *node1 = [DataNode nodeWithSector:SectorMake(5, 5)];
+  DataNode *node2 = [DataNode nodeWithSector:SectorMake(4, 4)];
+  DataNode *node3 = [DataNode nodeWithSector:SectorMake(3, 4)];
+  [board.nodes addObjectsFromArray:@[node1,node2,node3]];
+  XCTAssertTrue([board placementWouldBlockBoard:SectorMake(2, 5)], @"");
+}
+
+-(void)testPlacementWouldBlockBoardDiagonals2 {
+  Board *board = [Board new];
+  DataNode *node1 = [DataNode nodeWithSector:SectorMake(2, 0)];
+  DataNode *node2 = [DataNode nodeWithSector:SectorMake(1, 1)];
+  [board.nodes addObjectsFromArray:@[node1,node2]];
+  XCTAssertTrue([board placementWouldBlockBoard:SectorMake(0, 1)], @"");
+}
+
+
+-(void)testBoardIsNotBlocked {
+  Board *board = [Board new];
+  DataNode *node1 = [DataNode nodeWithSector:SectorMake(1, 0)];
+  DataNode *node2 = [DataNode nodeWithSector:SectorMake(1, 1)];
+  [board.nodes addObjectsFromArray:@[node1,node2]];
+  XCTAssertFalse([board placementWouldBlockBoard:SectorMake(1, 2)], @"");
+}
+
 
 @end

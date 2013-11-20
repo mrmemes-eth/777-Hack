@@ -25,4 +25,8 @@
   [self setPosition:CGPointFromSector(sector)];
 }
 
+-(NSString*)description {
+  return [NSString stringWithFormat:@"<%@> name: %@ sector: { row: %d, col: %d}  position: { x: %f, y: %f } size: { w: %f, h: %f }",NSStringFromClass(self.class), self.name, self.sector.row, self.sector.col, self.position.x, self.position.y, self.size.width, self.size.height];
+}
+
 @end

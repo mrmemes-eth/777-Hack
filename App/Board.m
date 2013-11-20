@@ -2,11 +2,16 @@
 #import "DataNode.h"
 #import "Hacker.h"
 #import "WarpNode.h"
+#import "NSValue+Sector.h"
 
-static const NSUInteger minNodes = 4;
-static const NSUInteger maxNodes = 10;
+static const NSUInteger minNodes = 6;
+static const NSUInteger maxNodes = 12;
 
-static inline NSArray* shuffleArray(NSArray *array) {
+static inline NSUInteger randomBetween(NSUInteger min, NSUInteger max) {
+  return min + arc4random() % (max - min);
+}
+
+static inline NSMutableArray* shuffleArray(NSArray *array) {
   NSMutableArray *mutableArray = [NSMutableArray arrayWithArray:array];
    for (NSInteger i = mutableArray.count-1; i > 0; i--) {
     [mutableArray exchangeObjectAtIndex:i
@@ -15,33 +20,16 @@ static inline NSArray* shuffleArray(NSArray *array) {
   return mutableArray;
 }
 
-static inline Sector sectorInDirection(Sector sector, UISwipeGestureRecognizerDirection direction) {
-  switch (direction) {
-    case UISwipeGestureRecognizerDirectionRight:
-      sector.col += 1;
-      break;
-    case UISwipeGestureRecognizerDirectionLeft:
-      sector.col -= 1;
-      break;
-    case UISwipeGestureRecognizerDirectionUp:
-      sector.row += 1;
-      break;
-    case UISwipeGestureRecognizerDirectionDown:
-      sector.row -= 1;
-      break;
-  }
-  return sector;
-}
-
 @interface Board() {
   NSMutableArray *_nodes;
+  NSMutableArray *_availableSectors;
 }
 -(NSUInteger)nodeCount;
 -(Sector)randomUnoccupiedSector;
 -(Sector)randomUnoccupiedCornerSector;
 -(NSArray*)shuffledCorners;
 -(NSArray*)randomUnoccupiedCornerPair;
--(void)addWarp;
+-(NSMutableArray*)availableSectors;
 @end
 
 @implementation Board
@@ -49,7 +37,6 @@ static inline Sector sectorInDirection(Sector sector, UISwipeGestureRecognizerDi
 +(id)boardWithHacker:(Hacker *)hacker atSector:(Sector)sector {
   id board = [[[self class] alloc] init];
   [board addHacker:hacker atSector:sector];
-  [board addWarp];
   [board populateNodes];
   return board;
 }
@@ -63,34 +50,6 @@ static inline Sector sectorInDirection(Sector sector, UISwipeGestureRecognizerDi
     _nodes = [NSMutableArray array];
   }
   return _nodes;
-}
-
--(NSArray*)reversedNodes {
-  return [[self.nodes reverseObjectEnumerator] allObjects];
-}
-
--(void)addHacker:(Hacker *)hacker atSector:(Sector)sector {
-  [self setHacker:hacker];
-  [self.hacker setSector:sector];
-  [self.nodes addObject:self.hacker];
-}
-
--(void)addWarp {
-  [self.nodes addObject:[WarpNode nodeWithSector:self.randomUnoccupiedCornerSector]];
-}
-
--(BOOL)sectorIsOccupied:(Sector)sector {
-  return [self.nodes any:^BOOL(SpriteSectorNode *node) {
-    return SectorEqualToSector(sector, node.sector);
-  }];
-}
-
--(BOOL)sectorIsUnoccupied:(Sector)sector {
-  return ![self sectorIsOccupied:sector];
-}
-
--(BOOL)sectorIsInBounds:(Sector)sector {
-  return sector.col <= 5 && sector.row <= 5;
 }
 
 -(NSArray*)shuffledCorners {
@@ -110,32 +69,74 @@ static inline Sector sectorInDirection(Sector sector, UISwipeGestureRecognizerDi
 -(Sector)randomUnoccupiedSector {
   Sector sector;
   do {
-    sector = SectorMake(randomBetween(0, gridSectors),
-                        randomBetween(0, gridSectors));
-  } while ([self sectorIsOccupied:sector]);
+    if ([self.availableSectors count] == 0) {
+      NSLog(@"breaking after depleting sectors");
+      break;
+    }
+    sector = [[self.availableSectors lastObject] sectorValue];
+    [self.availableSectors removeLastObject];
+  } while ([self placementWouldBlockBoard:sector]);
   return sector;
 }
 
+-(NSMutableArray*)availableSectors {
+  if (!_availableSectors) {
+    _availableSectors = [NSMutableArray array];
+    for (NSInteger r = 0; r < gridSectors; r++) {
+      for (NSInteger c = 0; c < gridSectors; c++) {
+        [_availableSectors addObject:[NSValue valueWithSector:SectorMake(r, c)]];
+      }
+    }
+    _availableSectors = shuffleArray(_availableSectors);
+  }
+  return _availableSectors;
+}
+
+-(void)addNode:(SpriteSectorNode *)node {
+  NSValue *sectorValue = [NSValue valueWithSector:node.sector];
+  [self.availableSectors removeObject:sectorValue];
+  [self.nodes addObject:node];
+}
+
+-(void)addHacker:(Hacker *)hacker atSector:(Sector)sector {
+  [self setHacker:hacker];
+  [self.hacker setSector:sector];
+  [self addNode:self.hacker];
+}
+
+-(void)addWarpNodeAtSector:(Sector)sector {
+  [self addNode:[WarpNode nodeWithSector:sector]];
+}
+
+-(BOOL)sectorIsOccupied:(Sector)sector {
+  return [self.nodes any:^BOOL(SpriteSectorNode *node) {
+    return SectorEqualToSector(sector, node.sector);
+  }];
+}
+
+-(BOOL)sectorIsUnoccupied:(Sector)sector {
+  return ![self sectorIsOccupied:sector];
+}
+
 -(void)addDataNodeAtSector:(Sector)sector {
-  [self.nodes addObject:[DataNode nodeWithSector:sector]];
+  [self addNode:[DataNode nodeWithSector:sector]];
 }
 
 -(void)populateNodes {
-  NSUInteger nodeCount = self.nodeCount;
-  for (NSUInteger i = 0; i <= nodeCount; i++) {
-    Sector sector = [self randomUnoccupiedSector];
-    [self.nodes addObject:[DataNode nodeWithSector:sector]];
+  [self addWarpNodeAtSector:self.randomUnoccupiedCornerSector];
+  for (NSUInteger i = 0; i < self.nodeCount; i++) {
+    [self addDataNodeAtSector:[self randomUnoccupiedSector]];
   }
 }
 
 -(Sector)newSectorForNode:(SpriteSectorNode*)node
               inDirection:(UISwipeGestureRecognizerDirection)direction {
-  Sector sector = sectorInDirection(node.sector, direction);
+  Sector sector = SectorInDirection(node.sector, direction);
   if ([[self nodeAtSector:sector] isKindOfClass:[WarpNode class]]) {
     if ([node isKindOfClass:[Hacker class]])
       [[NSNotificationCenter defaultCenter] postNotificationName:HackerWillEnterWarpZone object:nil];
     return sector;
-  } else if ([self sectorIsUnoccupied:sector] && [self sectorIsInBounds:sector]) {
+  } else if (SectorIsWithinBoard(sector) && [self sectorIsUnoccupied:sector]) {
     return sector;
   } else {
     return node.sector;
@@ -146,6 +147,34 @@ static inline Sector sectorInDirection(Sector sector, UISwipeGestureRecognizerDi
   return [self.nodes detect:^BOOL(SpriteSectorNode *node) {
     return SectorEqualToSector(sector, node.sector);
   }];
+}
+
+-(NSArray*)nodesAdjacentToNode:(SpriteSectorNode*)node {
+  return [self.nodes filter:^BOOL(SpriteSectorNode *otherNode) {
+    return SectorIsAdjacentToSector(otherNode.sector, node.sector);
+  }];
+}
+
+-(NSArray*)contiguousNodesForNode:(SpriteSectorNode*)node inArray:(NSMutableArray*)array {
+  [[self nodesAdjacentToNode:node] each:^(SpriteSectorNode *newNode) {
+    if(![array containsObject:newNode]) {
+      [array addObject:newNode];
+      [self contiguousNodesForNode:newNode inArray:array];
+    }
+  }];
+  return array;
+}
+
+-(BOOL)placementWouldBlockBoard:(Sector)sector {
+  SpriteSectorNode *nodeForSector = [SpriteSectorNode nodeWithSector:sector];
+  NSMutableArray *nodes = [NSMutableArray arrayWithObject:nodeForSector];
+
+  NSArray *contiguousNodes = [self contiguousNodesForNode:nodeForSector inArray:nodes];
+  NSArray *borderNodes = [contiguousNodes filter:^BOOL(SpriteSectorNode *node) {
+    return node.sector.row == 0 || node.sector.col  == 0 ||
+           node.sector.row == gridSectors - 1 || node.sector.col == gridSectors - 1;
+  }];
+  return [borderNodes count] > 1;
 }
 
 @end

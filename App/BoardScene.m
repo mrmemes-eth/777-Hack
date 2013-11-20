@@ -79,7 +79,7 @@ static CGPoint bumpPoint(CGPoint location, UISwipeGestureRecognizerDirection dir
 -(void)setBoard:(Board *)board {
   [self removeChildrenInArray:self.removableChildren];
   _board = board;
-  [_board.reversedNodes each:^(SKSpriteNode *node) {
+  [_board.nodes each:^(SKSpriteNode *node) {
     if (![node inParentHierarchy:self]) [self addChild:node];
   }];
 }
