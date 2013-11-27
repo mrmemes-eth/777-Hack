@@ -31,6 +31,7 @@
 		7C667BD41826EECB006D2EA8 /* DataNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C667BD31826EECB006D2EA8 /* DataNode.m */; };
 		7C667BD71826FB5B006D2EA8 /* Board.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C667BD61826FB5B006D2EA8 /* Board.m */; };
 		7C8E24CB1831E20000564773 /* HackerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C8E24CA1831E20000564773 /* HackerTest.m */; };
+		7CBC8C89183C713F00D33751 /* Enemy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CBC8C88183C713F00D33751 /* Enemy.m */; };
 		E167A9751B3647CC857E1FE5 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F186E5361B244FFA0E7BD6C /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -86,6 +87,8 @@
 		7C667BD61826FB5B006D2EA8 /* Board.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Board.m; sourceTree = "<group>"; };
 		7C8E24CA1831E20000564773 /* HackerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HackerTest.m; sourceTree = "<group>"; };
 		7C9D89A21829FEC4000BF6D9 /* SectorFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectorFunctions.h; sourceTree = "<group>"; };
+		7CBC8C87183C713F00D33751 /* Enemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Enemy.h; sourceTree = "<group>"; };
+		7CBC8C88183C713F00D33751 /* Enemy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Enemy.m; sourceTree = "<group>"; };
 		869CFEEEE00C4A1D844E4A6A /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = ../Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -203,6 +206,8 @@
 				7C667BC318258E69006D2EA8 /* BoardScene.m */,
 				7C667BD21826EECB006D2EA8 /* DataNode.h */,
 				7C667BD31826EECB006D2EA8 /* DataNode.m */,
+				7CBC8C87183C713F00D33751 /* Enemy.h */,
+				7CBC8C88183C713F00D33751 /* Enemy.m */,
 				7C667BCF1826D1FE006D2EA8 /* Hacker.h */,
 				7C667BD01826D1FE006D2EA8 /* Hacker.m */,
 				7C624C461831F39C00F592C0 /* NotificatonConstants.h */,
@@ -368,6 +373,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7CBC8C89183C713F00D33751 /* Enemy.m in Sources */,
 				7C667BD41826EECB006D2EA8 /* DataNode.m in Sources */,
 				7C50CB7E1829E84D0058F2B6 /* WarpNode.m in Sources */,
 				7C667BC818258E69006D2EA8 /* AppDelegate.m in Sources */,
