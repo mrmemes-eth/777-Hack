@@ -2,6 +2,7 @@
 #import "Hacker.h"
 #import "SpriteSectorNode.h"
 #import "Board.h"
+#import "NSValue+Sector.h"
 
 static CGPoint bumpPoint(CGPoint location, UISwipeGestureRecognizerDirection direction) {
   CGFloat distance = ((gridSectorLength - nodeSize().width) / 2) - 5;
@@ -158,6 +159,7 @@ static CGPoint bumpPoint(CGPoint location, UISwipeGestureRecognizerDirection dir
         [self setBoard:[Board boardWithHacker:self.hacker atSector:self.hacker.sector]];
         [[NSNotificationCenter defaultCenter] postNotificationName:HackerDidEnterWarpZone object:nil];
       }
+      [[NSNotificationCenter defaultCenter] postNotificationName:HackerDidMove object:[NSValue valueWithSector:newSector]];
     }];
   }
 }

@@ -2,6 +2,7 @@
 #import "DataNode.h"
 #import "Hacker.h"
 #import "WarpNode.h"
+#import "Enemy.h"
 #import "NSValue+Sector.h"
 
 static const NSUInteger minNodes = 6;
@@ -108,6 +109,11 @@ static inline NSMutableArray* shuffleArray(NSArray *array) {
   [self addNode:[WarpNode nodeWithSector:sector]];
 }
 
+-(void)addEnemy:(Enemy*)enemy atSector:(Sector)sector {
+  [enemy setSector:sector];
+  [self addNode:enemy];
+}
+
 -(BOOL)sectorIsOccupied:(Sector)sector {
   return [self.nodes any:^BOOL(SpriteSectorNode *node) {
     return SectorEqualToSector(sector, node.sector);
@@ -127,6 +133,7 @@ static inline NSMutableArray* shuffleArray(NSArray *array) {
   for (NSUInteger i = 0; i < self.nodeCount; i++) {
     [self addDataNodeAtSector:[self randomUnoccupiedSector]];
   }
+  [self addEnemy:[Enemy new] atSector:[self randomUnoccupiedSector]];
 }
 
 -(Sector)newSectorForNode:(SpriteSectorNode*)node

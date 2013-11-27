@@ -1,6 +1,6 @@
 #import "SpriteSectorNode.h"
 
-@class Hacker;
+@class Hacker, Enemy;
 
 @interface Board : NSObject
 
@@ -14,6 +14,7 @@
 -(void)addHacker:(Hacker*)hacker atSector:(Sector)sector;
 -(void)addDataNodeAtSector:(Sector)sector;
 -(void)addWarpNodeAtSector:(Sector)sector;
+-(void)addEnemy:(Enemy*)enemy atSector:(Sector)sector;
 
 -(BOOL)sectorIsOccupied:(Sector)sector;
 -(BOOL)sectorIsUnoccupied:(Sector)sector;
