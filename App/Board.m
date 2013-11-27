@@ -31,6 +31,7 @@ static inline NSMutableArray* shuffleArray(NSArray *array) {
 -(NSArray*)shuffledCorners;
 -(NSArray*)randomUnoccupiedCornerPair;
 -(NSMutableArray*)availableSectors;
+-(NSArray*)mooreNodesForSector:(Sector)sector;
 @end
 
 @implementation Board
@@ -111,6 +112,7 @@ static inline NSMutableArray* shuffleArray(NSArray *array) {
 
 -(void)addEnemy:(Enemy*)enemy atSector:(Sector)sector {
   [enemy setSector:sector];
+  [enemy setPathFinderDelegate:self];
   [self addNode:enemy];
 }
 
@@ -156,32 +158,41 @@ static inline NSMutableArray* shuffleArray(NSArray *array) {
   }];
 }
 
--(NSArray*)nodesAdjacentToNode:(SpriteSectorNode*)node {
+-(NSArray*)mooreNodesForNode:(SpriteSectorNode*)node {
   return [self.nodes filter:^BOOL(SpriteSectorNode *otherNode) {
     return SectorIsAdjacentToSector(otherNode.sector, node.sector);
   }];
 }
 
--(NSArray*)contiguousNodesForNode:(SpriteSectorNode*)node inArray:(NSMutableArray*)array {
-  [[self nodesAdjacentToNode:node] each:^(SpriteSectorNode *newNode) {
+-(NSArray*)mooreNodesForNode:(SpriteSectorNode*)node inArray:(NSMutableArray*)array {
+  [[self mooreNodesForNode:node] each:^(SpriteSectorNode *newNode) {
     if(![array containsObject:newNode]) {
       [array addObject:newNode];
-      [self contiguousNodesForNode:newNode inArray:array];
+      [self mooreNodesForNode:newNode inArray:array];
     }
   }];
   return array;
 }
 
--(BOOL)placementWouldBlockBoard:(Sector)sector {
+-(NSArray*)mooreNodesForSector:(Sector)sector {
   SpriteSectorNode *nodeForSector = [SpriteSectorNode nodeWithSector:sector];
   NSMutableArray *nodes = [NSMutableArray arrayWithObject:nodeForSector];
+  return [self mooreNodesForNode:nodeForSector inArray:nodes];
+}
 
-  NSArray *contiguousNodes = [self contiguousNodesForNode:nodeForSector inArray:nodes];
+-(BOOL)placementWouldBlockBoard:(Sector)sector {
+  NSArray *contiguousNodes = [self mooreNodesForSector:sector];
   NSArray *borderNodes = [contiguousNodes filter:^BOOL(SpriteSectorNode *node) {
     return node.sector.row == 0 || node.sector.col  == 0 ||
            node.sector.row == gridSectors - 1 || node.sector.col == gridSectors - 1;
   }];
   return [borderNodes count] > 1;
+}
+
+#pragma mark PathFinderDelegate
+
+-(BOOL)sectorIsTraversible:(Sector)sector {
+  return SectorIsWithinBoard(sector) && [self sectorIsUnoccupied:sector];
 }
 
 @end

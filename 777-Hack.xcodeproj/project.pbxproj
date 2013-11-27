@@ -31,6 +31,8 @@
 		7C667BD41826EECB006D2EA8 /* DataNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C667BD31826EECB006D2EA8 /* DataNode.m */; };
 		7C667BD71826FB5B006D2EA8 /* Board.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C667BD61826FB5B006D2EA8 /* Board.m */; };
 		7C8E24CB1831E20000564773 /* HackerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C8E24CA1831E20000564773 /* HackerTest.m */; };
+		7C9F1F081845AE5000FD1FD1 /* PathFinder.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C9F1F071845AE5000FD1FD1 /* PathFinder.m */; };
+		7C9F1F0B1845B48B00FD1FD1 /* PathFinderNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C9F1F0A1845B48B00FD1FD1 /* PathFinderNode.m */; };
 		7CBC8C89183C713F00D33751 /* Enemy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CBC8C88183C713F00D33751 /* Enemy.m */; };
 		E167A9751B3647CC857E1FE5 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F186E5361B244FFA0E7BD6C /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -87,6 +89,10 @@
 		7C667BD61826FB5B006D2EA8 /* Board.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Board.m; sourceTree = "<group>"; };
 		7C8E24CA1831E20000564773 /* HackerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HackerTest.m; sourceTree = "<group>"; };
 		7C9D89A21829FEC4000BF6D9 /* SectorFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectorFunctions.h; sourceTree = "<group>"; };
+		7C9F1F061845AE5000FD1FD1 /* PathFinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PathFinder.h; sourceTree = "<group>"; };
+		7C9F1F071845AE5000FD1FD1 /* PathFinder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PathFinder.m; sourceTree = "<group>"; };
+		7C9F1F091845B48B00FD1FD1 /* PathFinderNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PathFinderNode.h; sourceTree = "<group>"; };
+		7C9F1F0A1845B48B00FD1FD1 /* PathFinderNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PathFinderNode.m; sourceTree = "<group>"; };
 		7CBC8C87183C713F00D33751 /* Enemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Enemy.h; sourceTree = "<group>"; };
 		7CBC8C88183C713F00D33751 /* Enemy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Enemy.m; sourceTree = "<group>"; };
 		869CFEEEE00C4A1D844E4A6A /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = ../Pods/Pods.xcconfig; sourceTree = "<group>"; };
@@ -197,13 +203,13 @@
 		7C667BBF18258E69006D2EA8 /* App */ = {
 			isa = PBXGroup;
 			children = (
-				7C601CFF183B29C5000F3650 /* Categories */,
 				7C667BC018258E69006D2EA8 /* AppDelegate.h */,
 				7C667BC118258E69006D2EA8 /* AppDelegate.m */,
 				7C667BD51826FB5B006D2EA8 /* Board.h */,
 				7C667BD61826FB5B006D2EA8 /* Board.m */,
 				7C667BC218258E69006D2EA8 /* BoardScene.h */,
 				7C667BC318258E69006D2EA8 /* BoardScene.m */,
+				7C601CFF183B29C5000F3650 /* Categories */,
 				7C667BD21826EECB006D2EA8 /* DataNode.h */,
 				7C667BD31826EECB006D2EA8 /* DataNode.m */,
 				7CBC8C87183C713F00D33751 /* Enemy.h */,
@@ -211,6 +217,10 @@
 				7C667BCF1826D1FE006D2EA8 /* Hacker.h */,
 				7C667BD01826D1FE006D2EA8 /* Hacker.m */,
 				7C624C461831F39C00F592C0 /* NotificatonConstants.h */,
+				7C9F1F061845AE5000FD1FD1 /* PathFinder.h */,
+				7C9F1F071845AE5000FD1FD1 /* PathFinder.m */,
+				7C9F1F091845B48B00FD1FD1 /* PathFinderNode.h */,
+				7C9F1F0A1845B48B00FD1FD1 /* PathFinderNode.m */,
 				7C9D89A21829FEC4000BF6D9 /* SectorFunctions.h */,
 				7C50CB771829E3730058F2B6 /* SpriteSectorNode.h */,
 				7C50CB781829E3730058F2B6 /* SpriteSectorNode.m */,
@@ -377,12 +387,14 @@
 				7C667BD41826EECB006D2EA8 /* DataNode.m in Sources */,
 				7C50CB7E1829E84D0058F2B6 /* WarpNode.m in Sources */,
 				7C667BC818258E69006D2EA8 /* AppDelegate.m in Sources */,
+				7C9F1F0B1845B48B00FD1FD1 /* PathFinderNode.m in Sources */,
 				7C667BD71826FB5B006D2EA8 /* Board.m in Sources */,
 				7C667BD11826D1FE006D2EA8 /* Hacker.m in Sources */,
 				7C667BCB18258E69006D2EA8 /* WelcomeScene.m in Sources */,
 				7C667AFE18243A46006D2EA8 /* main.m in Sources */,
 				7C601D02183B29EE000F3650 /* NSValue+Sector.m in Sources */,
 				7C667BCA18258E69006D2EA8 /* ViewController.m in Sources */,
+				7C9F1F081845AE5000FD1FD1 /* PathFinder.m in Sources */,
 				7C667BC918258E69006D2EA8 /* BoardScene.m in Sources */,
 				7C50CB791829E3730058F2B6 /* SpriteSectorNode.m in Sources */,
 			);

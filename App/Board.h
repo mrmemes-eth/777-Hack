@@ -1,8 +1,9 @@
 #import "SpriteSectorNode.h"
+#import "PathFinder.h"
 
 @class Hacker, Enemy;
 
-@interface Board : NSObject
+@interface Board : NSObject<PathFinderDelegate>
 
 @property(nonatomic,strong) Hacker *hacker;
 
@@ -25,7 +26,7 @@
 
 -(void)populateNodes;
 
--(NSArray*)nodesAdjacentToNode:(SpriteSectorNode*)node;
+-(NSArray*)mooreNodesForNode:(SpriteSectorNode*)node;
 -(BOOL)placementWouldBlockBoard:(Sector)sector;
 
 @end

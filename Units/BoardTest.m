@@ -93,14 +93,14 @@
   XCTAssertEqual(newSector, newSector, @"");
 }
 
--(void)testNodesContiguousWithNode {
+-(void)testMooreNodesForNode {
   Board *board = [Board new];
   DataNode *node1 = [DataNode nodeWithSector:SectorMake(1, 0)];
   DataNode *node2 = [DataNode nodeWithSector:SectorMake(1, 1)];
   DataNode *node3 = [DataNode nodeWithSector:SectorMake(0, 1)];
   [board.nodes addObjectsFromArray:@[node1,node3]];
   NSArray *expected = @[node1,node3];
-  XCTAssertEqualObjects([board nodesAdjacentToNode:node2], expected, @"");
+  XCTAssertEqualObjects([board mooreNodesForNode:node2], expected, @"");
 }
 
 -(void)testPlacementWouldBlockBoard {
