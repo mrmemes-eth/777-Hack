@@ -3,12 +3,13 @@
 #import "NSValue+Sector.h"
 
 @interface PathFinder() {
-  NSMutableArray *_openNodes;
   NSMutableArray *_closedNodes;
 }
+
+@property(nonatomic, strong) NSMutableArray *openNodes;
+
 -(id)initWithMovementCost:(NSUInteger)cost;
 
--(NSMutableArray*)openNodes;
 -(NSMutableArray*)closedNodes;
 -(void)reset;
 
@@ -26,13 +27,6 @@
     [self setMovementCost:cost];
   }
   return self;
-}
-
--(NSMutableArray*)openNodes {
-  if(!_openNodes) {
-    _openNodes = [NSMutableArray array];
-  }
-  return _openNodes;
 }
 
 -(NSMutableArray*)closedNodes {
@@ -58,19 +52,35 @@
   }];
 }
 
--(NSArray*)pathStartingAtSector:(Sector)start endingAtSector:(Sector)end {
-  [self reset];
-  NSArray *neighbors = [self vonNeumannNeighborsForSector:start];
-  log_object(neighbors);
-  [self.openNodes addObjectsFromArray:neighbors];
-  [self.openNodes each:^(PathFinderNode *node) {
-    [node setMovementCost:self.movementCost];
-    [node setDestinationSector:end];
+-(PathFinderNode*)bestNodeFromNode:(PathFinderNode*)node toSector:(Sector)sector {
+  NSArray *neighbors = [self vonNeumannNeighborsForSector:node.sector];
+  [neighbors each:^(PathFinderNode *currentNode) {
+    if (![self.closedNodes containsObject:currentNode]) {
+      [self.openNodes addObject:currentNode];
+      [currentNode setMovementCost:self.movementCost];
+      [currentNode setDestinationSector:sector];
+    }
   }];
-  log_object(self.openNodes);
   PathFinderNode *bestNode = [self.openNodes min:^NSComparisonResult(PathFinderNode *node, PathFinderNode *otherNode) {
     return [node compare:otherNode];
   }];
+  [self.openNodes removeObject:bestNode];
+  return bestNode;
+}
+
+-(NSArray*)pathStartingAtSector:(Sector)start endingAtSector:(Sector)end {
+  [self reset];
+  PathFinderNode *startNode = [PathFinderNode nodeWithSector:start];
+  [self.closedNodes addObject:startNode];
+  PathFinderNode *bestNode = [self bestNodeFromNode:startNode toSector:end];
+  PathFinderNode *nextBestNode;
+  [self.closedNodes addObject:bestNode];
+  while ([self.openNodes count] > 0 && !SectorEqualToSector(bestNode.sector, end)) {
+    nextBestNode = [self bestNodeFromNode:bestNode toSector:end];
+    [nextBestNode setParentNode:bestNode];
+    [self.closedNodes addObject:nextBestNode];
+    bestNode = nextBestNode;
+  }
   log_sector(bestNode.sector);
   return [NSArray arrayWithObject:bestNode];
 }
